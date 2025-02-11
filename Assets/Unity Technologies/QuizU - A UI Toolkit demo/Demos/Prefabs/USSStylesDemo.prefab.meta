@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6d496d32147e84ae886601e46b1f673e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 268492
+  packageName: QuizU - A UI toolkit sample
+  packageVersion: 1.1.0
+  assetPath: Assets/Unity Technologies/QuizU - A UI Toolkit demo/Demos/Prefabs/USSStylesDemo.prefab
+  uploadId: 630859

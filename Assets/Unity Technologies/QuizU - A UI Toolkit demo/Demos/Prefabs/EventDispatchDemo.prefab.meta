@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5157f9fb952174a788824fd4980f7794
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 268492
+  packageName: QuizU - A UI toolkit sample
+  packageVersion: 1.1.0
+  assetPath: Assets/Unity Technologies/QuizU - A UI Toolkit demo/Demos/Prefabs/EventDispatchDemo.prefab
+  uploadId: 630859

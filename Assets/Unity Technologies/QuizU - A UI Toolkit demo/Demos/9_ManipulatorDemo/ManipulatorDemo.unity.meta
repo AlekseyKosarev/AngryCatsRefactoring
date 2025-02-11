@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 37f8f7664806e4c3faeccfac3a14506f
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 268492
+  packageName: QuizU - A UI toolkit sample
+  packageVersion: 1.1.0
+  assetPath: Assets/Unity Technologies/QuizU - A UI Toolkit demo/Demos/9_ManipulatorDemo/ManipulatorDemo.unity
+  uploadId: 630859
