@@ -1,0 +1,19 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Game/UI/Uss/Buttons.uss?fileID=7433441132597879392&amp;guid=d84d975e04a01c84c9c4551c7fa28c48&amp;type=3#Buttons" />
+    <engine:VisualElement style="flex-grow: 1;">
+        <engine:VisualElement name="Buttons" style="flex-grow: 1; flex-direction: row; width: 100%; height: 10%; justify-content: space-between; align-self: flex-start;">
+            <engine:Button text="Back" class="buttons-menu buttons-menu-cude button-game" style="background-color: rgb(233, 98, 98);" />
+            <engine:VisualElement style="flex-grow: 1; flex-direction: row; align-items: stretch; justify-content: flex-end; align-self: auto;">
+                <engine:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: center; width: 1850px;" />
+                <engine:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: center; width: 1850px;">
+                    <engine:Button text="undo" class="buttons-menu buttons-menu-cude button-game" style="align-items: auto; justify-content: flex-start; align-self: auto; align-content: auto; background-color: rgb(179, 141, 236);" />
+                    <engine:Button text="redo" class="buttons-menu buttons-menu-cude button-game" style="align-items: auto; justify-content: flex-start; align-self: auto; align-content: auto; background-color: rgb(105, 162, 250);" />
+                </engine:VisualElement>
+                <engine:Button text="play" class="buttons-menu buttons-menu-cude button-game" style="align-items: auto; justify-content: flex-start; align-self: auto; align-content: auto; background-color: rgb(116, 207, 101);" />
+            </engine:VisualElement>
+        </engine:VisualElement>
+        <engine:VisualElement style="flex-grow: 1; height: 70%; width: 100%; flex-direction: column; align-items: flex-end;">
+            <engine:VisualElement style="flex-grow: 1; width: 20%; flex-direction: row; background-color: rgba(0, 0, 0, 0.77); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 0; border-bottom-left-radius: 20px;" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

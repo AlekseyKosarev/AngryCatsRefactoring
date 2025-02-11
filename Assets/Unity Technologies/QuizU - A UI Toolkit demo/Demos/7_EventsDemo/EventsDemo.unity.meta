@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6a446f887e62b4a9dbfae7d7ca1aa6ac
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 268492
+  packageName: QuizU - A UI toolkit sample
+  packageVersion: 1.1.0
+  assetPath: Assets/Unity Technologies/QuizU - A UI Toolkit demo/Demos/7_EventsDemo/EventsDemo.unity
+  uploadId: 630859

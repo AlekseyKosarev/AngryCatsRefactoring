@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f5e1385ebe3a44e58b681fdb20e0b46d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 268492
+  packageName: QuizU - A UI toolkit sample
+  packageVersion: 1.1.0
+  assetPath: Assets/Unity Technologies/QuizU - A UI Toolkit demo/Demos/0_DemoSelection/DemoSelectionSetup.cs
+  uploadId: 630859

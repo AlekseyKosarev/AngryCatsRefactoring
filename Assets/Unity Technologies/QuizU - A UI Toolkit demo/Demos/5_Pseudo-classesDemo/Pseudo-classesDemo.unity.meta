@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0103d49b65a1342b582a3f9868f8a841
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 268492
+  packageName: QuizU - A UI toolkit sample
+  packageVersion: 1.1.0
+  assetPath: Assets/Unity Technologies/QuizU - A UI Toolkit demo/Demos/5_Pseudo-classesDemo/Pseudo-classesDemo.unity
+  uploadId: 630859

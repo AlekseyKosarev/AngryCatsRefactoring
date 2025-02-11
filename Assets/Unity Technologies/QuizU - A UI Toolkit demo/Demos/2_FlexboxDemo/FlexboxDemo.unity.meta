@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e03e84a8eb68b49ad8a2836b1386da1e
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 268492
+  packageName: QuizU - A UI toolkit sample
+  packageVersion: 1.1.0
+  assetPath: Assets/Unity Technologies/QuizU - A UI Toolkit demo/Demos/2_FlexboxDemo/FlexboxDemo.unity
+  uploadId: 630859

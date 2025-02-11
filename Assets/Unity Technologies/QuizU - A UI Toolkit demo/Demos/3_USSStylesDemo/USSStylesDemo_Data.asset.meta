@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d8a82ae5df5df42b8b9972bd991c5301
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 268492
+  packageName: QuizU - A UI toolkit sample
+  packageVersion: 1.1.0
+  assetPath: Assets/Unity Technologies/QuizU - A UI Toolkit demo/Demos/3_USSStylesDemo/USSStylesDemo_Data.asset
+  uploadId: 630859

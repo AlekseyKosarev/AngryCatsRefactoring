@@ -1,0 +1,13 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Game/UI/Uss/Buttons.uss?fileID=7433441132597879392&amp;guid=d84d975e04a01c84c9c4551c7fa28c48&amp;type=3#Buttons" />
+    <engine:VisualElement style="flex-grow: 1;">
+        <engine:VisualElement style="flex-grow: 1; width: 100%; height: 50%; align-self: auto; justify-content: space-around; flex-direction: row; align-content: auto; align-items: center;">
+            <engine:Button text="Find Maps" name="FindMapsBtn" class="buttons-menu" />
+        </engine:VisualElement>
+        <engine:VisualElement style="flex-grow: 1; width: 100%; height: 50%; align-self: auto; justify-content: space-around; flex-direction: row; align-items: center;">
+            <engine:Button text="Settings" name="SettingsBtn" class="buttons-menu buttons-menu-cude" />
+            <engine:Button text="Build" name="BuildBtn" class="buttons-menu buttons-menu-cude" />
+            <engine:Button text="Store" name="StoreBtn" class="buttons-menu buttons-menu-cude" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
