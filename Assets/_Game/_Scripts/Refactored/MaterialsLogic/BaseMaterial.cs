@@ -41,7 +41,18 @@ public class BaseMaterial: MonoBehaviour, IPausable
         InputData input = inputData;
         materialData.InputData = input;
     }
-
+    // public void PauseModeToggle()
+    // {
+    //     var isPaused = _states.IsStateActive(new PauseMode());
+    //     if (isPaused)
+    //     {
+    //         Resume();
+    //     }
+    //     else
+    //     {
+    //         Pause();
+    //     }
+    // }
     public void Pause()
     {
         _states.SwitchToState<PauseMode>(materialData);

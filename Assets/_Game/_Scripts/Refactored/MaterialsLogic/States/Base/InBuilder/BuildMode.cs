@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class BuildMode: BaseState<MaterialContext>
@@ -5,7 +6,7 @@ public class BuildMode: BaseState<MaterialContext>
     // private StateMachine<MaterialContext> _statesInBuildMode;
     private bool _selected = false;
     
-    public override void Init()
+    public override void Init(MaterialContext context)
     {
         Debug.Log("BUILDMode INIT");
         // _statesInBuildMode = new StateMachineBuilder<MaterialContext>()
@@ -27,20 +28,21 @@ public class BuildMode: BaseState<MaterialContext>
     public override void UpdateState(MaterialContext context)
     {
         var inputData = context.InputData;
-        if (inputData.ToSelect)//нажат объект
+        // if(inputData.MoveType == MoveType.None) return;
+        Debug.Log(inputData.MoveType);
+        if (inputData.Selected)//нажат объект
         {
-            inputData.ToSelect = false;
-            if(_selected)
-                Deselected(context);
-            else
-                Selected(context);
+            Selected(context);
         }
-
+        else
+        {
+            Deselected(context);
+        }
         if (_selected)
         {
             Debug.Log("selected");
-            UpdateMovement(context);
         }
+        UpdateMovement(context);
     }
 
     
@@ -60,8 +62,8 @@ public class BuildMode: BaseState<MaterialContext>
     
     private void UpdateMovement(MaterialContext context)
     {
-        if(context.InputData.MoveData.Direction == Vector3.zero) return;
-        switch (context.InputData.MoveData.MoveType)
+        if(context.InputData.Direction == Vector3.zero) return;
+        switch (context.InputData.MoveType)
         {
             case MoveType.Drag:
                 Drag(context);
@@ -73,12 +75,26 @@ public class BuildMode: BaseState<MaterialContext>
     }
     private void Drag(MaterialContext context)
     {
-        var moveVector = context.InputData.MoveData.Direction;
-        context.Transform.Translate(moveVector);
+        Debug.Log("drag move");
+        context.Transform.position = Move(context.InputData.Direction);
+    }
+    public Vector3 Move(Vector2 worldPos)
+    {
+        var dragPos = new Vector2(worldPos.x, worldPos.y);
+    
+        var x = (float)Math.Round(dragPos.x, 1);
+        var y = (float)Math.Round(dragPos.y, 1);
+        
+        var convertPos = new Vector2(x, y);
+        
+        var toMovePos = convertPos;
+        
+        return toMovePos;
     }
     private void MoveStep(MaterialContext context)
     {
-        var moveVector = context.InputData.MoveData.Direction;
-        context.Transform.position += moveVector.normalized * context.InputData.MoveData.StepSize;
+        Debug.Log("step move");
+        var moveVector = context.InputData.Direction;
+        context.Transform.position += moveVector.normalized * context.InputData.StepSize;
     }
 }

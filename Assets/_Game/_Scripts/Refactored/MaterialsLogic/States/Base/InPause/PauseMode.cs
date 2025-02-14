@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PauseMode: BaseState<MaterialContext>
 {
-    public override void Init()
+    public override void Init(MaterialContext context)
     {
-        
+        //nothing
     }
 
     public override void EnterState(MaterialContext context)

@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class SimulateMode: BaseState<MaterialContext>
 {
-    public override void Init()
+    public override void Init(MaterialContext context)
     {
-        throw new System.NotImplementedException();
+        //ничего
     }
 
     public override void EnterState(MaterialContext context)
@@ -13,7 +13,7 @@ public class SimulateMode: BaseState<MaterialContext>
         //вот тут по контексту могу получить ссылку на все необходимые компоненты
         
         //включение физики
-        context.Rb.bodyType = RigidbodyType2D.Dynamic;
+        context.Rb.bodyType = RigidbodyType2D.Dynamic;//TODO сделать функцию для включение/выключения физики
     }
 
     public override void ExitState(MaterialContext context)
