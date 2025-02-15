@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SimulateMode: BaseState<MaterialContext>
+public class Material_PlayMode: BaseState<MaterialContext>
 {
     public override void Init(MaterialContext context)
     {
@@ -9,7 +9,8 @@ public class SimulateMode: BaseState<MaterialContext>
 
     public override void EnterState(MaterialContext context)
     {
-        Debug.Log("SimulateMode enter");
+        Root.Instance.Material_PlayMode = true;
+        
         //вот тут по контексту могу получить ссылку на все необходимые компоненты
         
         //включение физики
@@ -18,6 +19,7 @@ public class SimulateMode: BaseState<MaterialContext>
 
     public override void ExitState(MaterialContext context)
     {
+        Root.Instance.Material_PlayMode = false;
         //выключение физики
         context.Rb.bodyType = RigidbodyType2D.Kinematic;
     }

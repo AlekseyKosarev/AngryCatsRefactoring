@@ -1,8 +1,8 @@
-using _Project.System.StateMachine.StateMachine;
+using StateMachine.StateMachineSystems;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class BaseMaterial: MonoBehaviour, IPausable
+public class BaseMaterial: MonoBehaviour, IPausable, IBuildable, IPlayable
 {
     private StateMachine<MaterialContext> _states;
     private MaterialContext materialData;
@@ -25,9 +25,9 @@ public class BaseMaterial: MonoBehaviour, IPausable
     private void Start()
     {
         _states = new StateMachineBuilder<MaterialContext>()
-            .AddState(new SimulateMode())
-            .AddState(new BuildMode())
-            .AddState(new PauseMode())
+            .AddState(new Material_PlayMode())
+            .AddState(new Material_BuildMode())
+            .AddState(new Material_PauseMode())
             .Build();
     }
 
@@ -41,35 +41,39 @@ public class BaseMaterial: MonoBehaviour, IPausable
         InputData input = inputData;
         materialData.InputData = input;
     }
-    // public void PauseModeToggle()
-    // {
-    //     var isPaused = _states.IsStateActive(new PauseMode());
-    //     if (isPaused)
-    //     {
-    //         Resume();
-    //     }
-    //     else
-    //     {
-    //         Pause();
-    //     }
-    // }
-    public void Pause()
+    public void PauseMode_Enable()
     {
-        _states.SwitchToState<PauseMode>(materialData);
+        _states.SaveCurrentStatesToPrevious();
+        _states.SwitchToState<Material_PauseMode>(materialData);
+    }
+    public void PauseMode_Disable()
+    {
+        _states.SetStateActive<Material_PauseMode>(false, materialData);
+        _states.ActivatePreviousStates(materialData);
     }
 
-    public void Resume()
+    public void EnterPlayMode()
     {
-        _states.SwitchToState<SimulateMode>(materialData);
+        _states.SwitchToState<Material_PlayMode>(materialData);
     }
     
     //TODO build mode logic
-    public void EnterBuildMode()
+    public void BuildMode_Enable()
     {
-        _states.SwitchToState<BuildMode>(materialData);
+        _states.SwitchToState<Material_BuildMode>(materialData);
     }
-    public void ExitBuildMode()
+    public void BuildMode_Disable()
     {
-        _states.SetStateActive<BuildMode>(false, materialData);//TODO лучше deactivate all states прокинуть и использовать
+        _states.SetStateActive<Material_BuildMode>(false, materialData);//TODO лучше deactivate all states прокинуть и использовать
+    }
+
+    public void PlayMode_Enable()
+    {
+        _states.SwitchToState<Material_PlayMode>(materialData);
+    }
+
+    public void PlayMode_Disable()
+    {
+        _states.SetStateActive<Material_PlayMode>(false, materialData);//TODO лучше deactivate all states прокинуть и использовать
     }
 }

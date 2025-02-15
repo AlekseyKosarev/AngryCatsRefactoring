@@ -1,0 +1,57 @@
+using UnityEngine;
+
+public class Root: Singleton<Root>
+{
+    //это рут класс для хранения ссылок на всю инфу,
+    //которая будет использоваться во всем проекте
+    
+    //MainCamera
+    [HideInInspector] public Camera mainCamera;
+    
+    //Input
+    public GameInputSystem_Actions InputActions;
+    public InputLogic inputLogic;
+    public InputModeToggle inputModeToggle;
+
+    //Registry systems
+    public FORTESET_GameObject_Container gameObjectContainer;
+    public PausableRegistry PausableRegistry;
+    public BuildableRegistry BuildableRegistry;
+    public PlayableRegistry PlayableRegistry;
+    
+    //ACTIVE STATES
+    
+    //GLOBAL
+    public bool Global_BuildMode = false;
+    public bool Global_MenuMode = false;
+    public bool Global_PauseMode = false;
+    public bool Global_PlayMode = false;
+    //INPUT
+    public bool Input_BuildMode = false;
+    public bool Input_GlobalMode = false;
+    public bool Input_MenuMode = false;
+    public bool Input_PlayMode = false;
+    //MATERIAL
+    public bool Material_BuildMode = false;
+    public bool Material_PlayMode = false;
+    public bool Material_PauseMode = false;
+    
+    
+    private void Start()
+    {
+        Init();
+    }
+
+    private void Init()
+    {
+        mainCamera = Camera.main;
+        InputActions = new GameInputSystem_Actions();
+        //Init Registry
+        PausableRegistry = new PausableRegistry();
+        PausableRegistry.AddRange(gameObjectContainer.GetIPausableObjects());
+        BuildableRegistry = new BuildableRegistry();
+        BuildableRegistry.AddRange(gameObjectContainer.GetIBuildableObjects());
+        PlayableRegistry = new PlayableRegistry();
+        PlayableRegistry.AddRange(gameObjectContainer.GetIPlayableObjects());
+    }
+}

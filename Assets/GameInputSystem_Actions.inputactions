@@ -41,11 +41,11 @@
             ]
         },
         {
-            "name": "Game Mode",
+            "name": "Play Mode",
             "id": "2f8d07ca-a687-45d3-b140-aca20a01c53d",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Click",
                     "type": "Button",
                     "id": "cf5bf24d-e481-43fc-9478-e83176a3a379",
                     "expectedControlType": "",
@@ -62,7 +62,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -82,7 +82,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "PauseToggle",
+                    "name": "PauseEnter",
                     "type": "Button",
                     "id": "bff1733d-d5ae-43b2-a6e7-79dcf42b076c",
                     "expectedControlType": "",
@@ -91,7 +91,16 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "BuildToggle",
+                    "name": "PauseExit",
+                    "type": "Button",
+                    "id": "38d934f3-9072-4d04-a26e-5e90f222d56b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BuildEnter",
                     "type": "Button",
                     "id": "baaad142-850b-4fd1-ad61-3dd2d7f93c68",
                     "expectedControlType": "",
@@ -100,9 +109,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "GameToggle",
+                    "name": "BuildExit",
+                    "type": "Button",
+                    "id": "4af984fe-5e5a-47e8-8901-71858efc7765",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GameEnter",
                     "type": "Button",
                     "id": "a3bf2e91-87c0-4190-81df-896d108304ca",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GameExit",
+                    "type": "Button",
+                    "id": "6b114e1d-64dc-44ba-8b8b-d4d8b93a94ec",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -135,11 +162,22 @@
                 {
                     "name": "",
                     "id": "c4fc961a-0d4d-4167-8cc2-3c06514ce126",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PauseToggle",
+                    "action": "PauseEnter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ac802f0f-0d70-4564-a9c3-cf94356da2c7",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseExit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -150,7 +188,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "GameToggle",
+                    "action": "GameEnter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7f39fd96-3a05-425e-a914-2dbf3c8a1812",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GameExit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -161,7 +210,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "BuildToggle",
+                    "action": "BuildEnter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0ba945db-43c0-4108-b0ee-bf888a788917",
+                    "path": "<Keyboard>/n",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BuildExit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

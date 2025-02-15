@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputBuildMode: BaseState<GameInputSystem_Actions>
+public class Input_BuildMode: BaseState<GameInputSystem_Actions>
 {
     private InputAction clickAction;
     // private InputAction dragAction;
@@ -9,8 +9,7 @@ public class InputBuildMode: BaseState<GameInputSystem_Actions>
     
     public override void Init(GameInputSystem_Actions context)
     {
-        Debug.Log("BuildMode INIT");
-        
+        Debug.Log("INPUT BuildMode INIT");
         clickAction = context.BuildMode.Click;
         // dragAction = context.FindAction("Drag");
     }
@@ -18,7 +17,8 @@ public class InputBuildMode: BaseState<GameInputSystem_Actions>
     public override void EnterState(GameInputSystem_Actions context)
     {
         base.EnterState(context);
-        Debug.Log("BuildMode ENTER");
+        Root.Instance.Input_BuildMode = true;
+        Debug.Log("INPUT BuildMode ENTER");
         // Подписка на действия
         context.BuildMode.Enable();
         clickAction.started += OnClickDowned;
@@ -28,7 +28,8 @@ public class InputBuildMode: BaseState<GameInputSystem_Actions>
 
     public override void ExitState(GameInputSystem_Actions context)
     {
-        Debug.Log("BuildMode EXIT");
+        Root.Instance.Input_BuildMode = false;
+        Debug.Log("INPUT BuildMode EXIT");
         // Отписка от действий
         context.BuildMode.Disable();
         clickAction.started -= OnClickDowned;

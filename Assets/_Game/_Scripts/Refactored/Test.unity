@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 132282018}
   - component: {fileID: 132282019}
+  - component: {fileID: 132282020}
   m_Layer: 0
   m_Name: ROOT
   m_TagString: Untagged
@@ -166,6 +167,27 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   inputLogic: {fileID: 1948530088}
   inputModeToggle: {fileID: 1948530087}
+  gameObjectContainer: {fileID: 132282020}
+--- !u!114 &132282020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132282017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f9a1380d74453fb96fc343491dbe02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameObjects:
+  - {fileID: 1948530086}
+  - {fileID: 2625449401704363901}
+  - {fileID: 1526701404}
+  - {fileID: 1159267836}
+  - {fileID: 795157603}
+  - {fileID: 1833674970}
+  - {fileID: 953701406}
 --- !u!1 &317385610
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,7 +811,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 6552117651953857493}
   selectedColor: {r: 0, g: 0.7953818, b: 1, a: 1}
-  defaultColor: {r: 1, g: 0.4198113, b: 0.4198113, a: 1}
+  defaultColor: {r: 0.78039217, g: 1, b: 0.3372549, a: 1}
 --- !u!61 &8169924573272842464
 BoxCollider2D:
   m_ObjectHideFlags: 0

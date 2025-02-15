@@ -1,6 +1,7 @@
+using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputMenuMode: BaseState<InputActionMap>
+public class Input_MenuMode: BaseState<InputActionMap>
 {
     private InputAction closeAction;
     private InputAction backAction;
@@ -18,6 +19,9 @@ public class InputMenuMode: BaseState<InputActionMap>
     public override void EnterState(InputActionMap context)
     {
         base.EnterState(context);
+        
+        Root.Instance.Input_MenuMode = true;
+        
         // Подписка на действия
         closeAction.performed += OnClosePerformed;
         backAction.performed += OnBackPerformed;
@@ -25,6 +29,8 @@ public class InputMenuMode: BaseState<InputActionMap>
 
     public override void ExitState(InputActionMap context)
     {
+        Root.Instance.Input_MenuMode = true;
+
         // Отписка от действий
         closeAction.performed -= OnClosePerformed;
         backAction.performed -= OnBackPerformed;

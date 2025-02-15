@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class BuildMode: BaseState<MaterialContext>
+public class Material_BuildMode: BaseState<MaterialContext>
 {
     // private StateMachine<MaterialContext> _statesInBuildMode;
     private bool _selected = false;
@@ -16,20 +16,19 @@ public class BuildMode: BaseState<MaterialContext>
 
     public override void EnterState(MaterialContext context)
     {
-        Debug.Log("BuildMode enter");
+        Root.Instance.Material_BuildMode = true;
         context.Rb.bodyType = RigidbodyType2D.Kinematic;
     }
 
     public override void ExitState(MaterialContext context)
     {
-        Debug.Log("BuildMode exit");
+        Root.Instance.Material_BuildMode = false;
     }
 
     public override void UpdateState(MaterialContext context)
     {
         var inputData = context.InputData;
         // if(inputData.MoveType == MoveType.None) return;
-        Debug.Log(inputData.MoveType);
         if (inputData.Selected)//нажат объект
         {
             Selected(context);
@@ -38,10 +37,10 @@ public class BuildMode: BaseState<MaterialContext>
         {
             Deselected(context);
         }
-        if (_selected)
-        {
-            Debug.Log("selected");
-        }
+        // if (_selected)
+        // {
+        //     Debug.Log("selected");
+        // }
         UpdateMovement(context);
     }
 

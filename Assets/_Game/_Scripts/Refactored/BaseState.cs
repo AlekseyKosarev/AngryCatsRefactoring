@@ -1,4 +1,5 @@
-using _Project.System.StateMachine.Interfaces;
+
+using StateMachine.Interfaces;
 
 public abstract class BaseState<T>: IState<T>
 {

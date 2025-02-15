@@ -1,6 +1,7 @@
+using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputGameMode: BaseState<GameInputSystem_Actions>
+public class Input_PlayMode: BaseState<GameInputSystem_Actions>
 {
     private InputAction clickAction;
     private InputAction dragAction;
@@ -8,23 +9,27 @@ public class InputGameMode: BaseState<GameInputSystem_Actions>
     
     public override void Init(GameInputSystem_Actions context)
     {
-        clickAction = context.FindAction("Click");
-        dragAction = context.FindAction("Drag");
+        // clickAction = context.GameMode.Click;
+        // dragAction = context.GameMode.Drag;        
     }
 
     public override void EnterState(GameInputSystem_Actions context)
     {
         base.EnterState(context);
+        Root.Instance.Input_PlayMode = true;
+        
         // Подписка на действия
-        clickAction.performed += OnClickPerformed;
-        dragAction.performed += OnDragPerformed;
+        // clickAction.performed += OnClickPerformed;
+        // dragAction.performed += OnDragPerformed;
     }
 
     public override void ExitState(GameInputSystem_Actions context)
     {
+        Root.Instance.Input_PlayMode = false;
+        
         // Отписка от действий
-        clickAction.performed -= OnClickPerformed;
-        dragAction.performed -= OnDragPerformed;
+        // clickAction.performed -= OnClickPerformed;
+        // dragAction.performed -= OnDragPerformed;
     }
 
     public override void UpdateState(GameInputSystem_Actions context)
