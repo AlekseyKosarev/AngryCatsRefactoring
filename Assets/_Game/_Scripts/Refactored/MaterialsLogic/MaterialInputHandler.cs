@@ -16,12 +16,12 @@ public class MaterialInputHandler: MonoBehaviour, IClickable
 
     public void OnClickDown()
     {
-        Debug.Log("down");
+        // Debug.Log("down");
     }
 
     public void OnClickUp()
     {
-        Debug.Log("up");
+        // Debug.Log("up");
         if(!_dragged)
             _selected = !_selected;
         _dragged = false;
@@ -30,7 +30,7 @@ public class MaterialInputHandler: MonoBehaviour, IClickable
 
     public void OnClickPerformed()
     {
-        Debug.Log("performed");
+        // Debug.Log("performed");
 
         _dragged = true;
     }

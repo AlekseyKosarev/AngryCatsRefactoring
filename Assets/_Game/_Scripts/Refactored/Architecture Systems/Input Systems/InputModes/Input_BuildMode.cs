@@ -9,7 +9,7 @@ public class Input_BuildMode: BaseState<GameInputSystem_Actions>
     
     public override void Init(GameInputSystem_Actions context)
     {
-        Debug.Log("INPUT BuildMode INIT");
+        // Debug.Log("INPUT BuildMode INIT");
         clickAction = context.BuildMode.Click;
         // dragAction = context.FindAction("Drag");
     }
@@ -18,7 +18,7 @@ public class Input_BuildMode: BaseState<GameInputSystem_Actions>
     {
         base.EnterState(context);
         Root.Instance.Input_BuildMode = true;
-        Debug.Log("INPUT BuildMode ENTER");
+        // Debug.Log("INPUT BuildMode ENTER");
         // Подписка на действия
         context.BuildMode.Enable();
         clickAction.started += OnClickDowned;
@@ -29,7 +29,7 @@ public class Input_BuildMode: BaseState<GameInputSystem_Actions>
     public override void ExitState(GameInputSystem_Actions context)
     {
         Root.Instance.Input_BuildMode = false;
-        Debug.Log("INPUT BuildMode EXIT");
+        // Debug.Log("INPUT BuildMode EXIT");
         // Отписка от действий
         context.BuildMode.Disable();
         clickAction.started -= OnClickDowned;

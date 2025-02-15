@@ -74,7 +74,7 @@ public class Material_BuildMode: BaseState<MaterialContext>
     }
     private void Drag(MaterialContext context)
     {
-        Debug.Log("drag move");
+        // Debug.Log("drag move");
         context.Transform.position = Move(context.InputData.Direction);
     }
     public Vector3 Move(Vector2 worldPos)

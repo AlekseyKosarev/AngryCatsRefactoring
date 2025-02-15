@@ -45,7 +45,6 @@ public class InputLogic: MonoBehaviour
             IClickable clickable = hit.collider.GetComponent<IClickable>();
             if (clickable != null)
             {
-                Debug.Log("HIT TRUEEE");
                 switch (clickPart)// Вызываем метод OnClickDown или OnClickUp
                 {
                     case ClickPart.Down:
