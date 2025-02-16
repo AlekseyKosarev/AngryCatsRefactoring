@@ -14,12 +14,6 @@ public class InputLogic: MonoBehaviour
     {
         Init();
     }
-    
-    // private bool TryRayToPoint(Vector2 screenPosition, out RaycastHit hit)
-    // {
-    //     Ray ray = mainCamera.ScreenPointToRay(screenPosition);
-    //     return Physics.Raycast(ray, out hit); // Возвращает true, если произошло столкновение
-    // }
     private bool TryRayToPoint(Vector2 screenPosition, out RaycastHit2D hit)
     {
         Ray ray = mainCamera.ScreenPointToRay(screenPosition);
@@ -60,10 +54,4 @@ public class InputLogic: MonoBehaviour
             }
         }
     }
-
-    // public void DragTo(Vector3 worldPosition)
-    // {
-    //     // Логика для драга
-    //     Debug.Log($"Dragging to {worldPosition}");
-    // }
 }
