@@ -9,20 +9,21 @@ public class Material_BuildMode: BaseState<MaterialContext>
     public override void Init(MaterialContext context)
     {
         Debug.Log("BUILDMode INIT");
-        // _statesInBuildMode = new StateMachineBuilder<MaterialContext>()
-        //     .AddState(new CanMoved())
-        //     .Build();
     }
 
     public override void EnterState(MaterialContext context)
     {
         Root.Instance.Material_BuildMode = true;
         context.Rb.bodyType = RigidbodyType2D.Kinematic;
+        
+        context.InputHandler.inputEnabled = true;
     }
 
     public override void ExitState(MaterialContext context)
     {
         Root.Instance.Material_BuildMode = false;
+        
+        context.InputHandler.inputEnabled = false;
     }
 
     public override void UpdateState(MaterialContext context)

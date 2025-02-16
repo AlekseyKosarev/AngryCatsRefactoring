@@ -11,7 +11,7 @@
                     "id": "1a3f76f9-bcf7-47b9-9b05-7b83888c1f7a",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Hold",
+                    "interactions": "Hold(duration=0.1)",
                     "initialStateCheck": true
                 }
             ],
@@ -58,7 +58,7 @@
                 {
                     "name": "",
                     "id": "b38dad8a-c8ae-4faf-927d-d06e91793751",
-                    "path": "",
+                    "path": "<Mouse>/press",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -118,7 +118,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "GameEnter",
+                    "name": "PlayEnter",
                     "type": "Button",
                     "id": "a3bf2e91-87c0-4190-81df-896d108304ca",
                     "expectedControlType": "",
@@ -127,7 +127,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "GameExit",
+                    "name": "PlayExit",
                     "type": "Button",
                     "id": "6b114e1d-64dc-44ba-8b8b-d4d8b93a94ec",
                     "expectedControlType": "",
@@ -188,7 +188,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "GameEnter",
+                    "action": "PlayEnter",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -199,7 +199,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "GameExit",
+                    "action": "PlayExit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

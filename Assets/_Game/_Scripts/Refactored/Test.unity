@@ -590,6 +590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 006a848981c34d84a0fb1e543518a1ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputEnabled: 0
 --- !u!114 &1399936115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -893,11 +894,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8169924573272842461}
   - component: {fileID: 6552117651953857493}
-  - component: {fileID: 8169924573272842464}
   - component: {fileID: 6057778287111937309}
   - component: {fileID: 8169924573272842463}
   - component: {fileID: 8169924573272842462}
   - component: {fileID: 8169924573272842465}
+  - component: {fileID: 8169924573272842466}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -1029,8 +1030,21 @@ MonoBehaviour:
   spriteRenderer: {fileID: 6552117651953857493}
   selectedColor: {r: 0, g: 0.7953818, b: 1, a: 1}
   defaultColor: {r: 0.78039217, g: 1, b: 0.3372549, a: 1}
---- !u!61 &8169924573272842464
-BoxCollider2D:
+--- !u!114 &8169924573272842465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2625449401704363901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 006a848981c34d84a0fb1e543518a1ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputEnabled: 0
+--- !u!58 &8169924573272842466
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1063,30 +1077,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.12}
-    newSize: {x: 5.12, y: 5.12}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 5.12, y: 5.12}
-  m_EdgeRadius: 0
---- !u!114 &8169924573272842465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2625449401704363901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 006a848981c34d84a0fb1e543518a1ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Offset: {x: -0.00000047683716, y: 0}
+  m_Radius: 2.56
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

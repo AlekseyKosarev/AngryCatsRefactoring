@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class MaterialInputHandler: MonoBehaviour, IClickable
 {
+    public bool inputEnabled;
+    
     private bool _selected = false;
     private bool _dragged = false;
     
@@ -16,12 +18,14 @@ public class MaterialInputHandler: MonoBehaviour, IClickable
 
     public void OnClickDown()
     {
-        // Debug.Log("down");
+        if (!inputEnabled) return;
+        Debug.Log("down");
     }
 
     public void OnClickUp()
     {
-        // Debug.Log("up");
+        if (!inputEnabled) return;
+        Debug.Log("up");
         if(!_dragged)
             _selected = !_selected;
         _dragged = false;
@@ -30,13 +34,16 @@ public class MaterialInputHandler: MonoBehaviour, IClickable
 
     public void OnClickPerformed()
     {
-        // Debug.Log("performed");
+        if (!inputEnabled) return;
+        Debug.Log("performed");
 
         _dragged = true;
     }
 
     private void Update()
     {
+        if (!inputEnabled) return;
+        
         if (_dragged)
         {
             var mousePosition = Root.Instance.inputLogic.GetMouseWorldPosition();

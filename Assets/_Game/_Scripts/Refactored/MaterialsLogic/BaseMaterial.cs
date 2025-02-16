@@ -10,11 +10,13 @@ public class BaseMaterial: MonoBehaviour, IPausable, IBuildable, IPlayable
     //materialData
     private Rigidbody2D rb;
     private MaterialView view;
+    private MaterialInputHandler inputHandler;
     public void Init()
     {
         rb = GetComponent<Rigidbody2D>();
         view = GetComponent<MaterialView>();
-        materialData = new MaterialContext(rb, transform, view);
+        inputHandler = GetComponent<MaterialInputHandler>();
+        materialData = new MaterialContext(rb, transform, view, inputHandler);
     }
 
     private void Awake()

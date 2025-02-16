@@ -37,7 +37,7 @@ public class InputLogic: MonoBehaviour
         return mainCamera.ScreenToWorldPoint(GetMousePosition());
     }
 
-    public void ClickTo(ClickPart clickPart)
+    public void ClickTo(InputActionPhase clickPhase)
     {
         Vector2 screenPosition = GetMousePosition();
         if (TryRayToPoint(screenPosition, out RaycastHit2D hit))
@@ -45,15 +45,15 @@ public class InputLogic: MonoBehaviour
             IClickable clickable = hit.collider.GetComponent<IClickable>();
             if (clickable != null)
             {
-                switch (clickPart)// Вызываем метод OnClickDown или OnClickUp
+                switch (clickPhase)// Вызываем метод OnClickDown или OnClickUp
                 {
-                    case ClickPart.Down:
+                    case InputActionPhase.Started:
                         clickable.OnClickDown();
                         break;
-                    case ClickPart.Up:
+                    case InputActionPhase.Canceled:
                         clickable.OnClickUp();
                         break;
-                    case ClickPart.Performed:
+                    case InputActionPhase.Performed:
                         clickable.OnClickPerformed();
                         break;
                 }

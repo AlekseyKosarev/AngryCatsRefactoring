@@ -33,7 +33,7 @@ public partial class @GameInputSystem_Actions: IInputActionCollection2, IDisposa
                     ""id"": ""1a3f76f9-bcf7-47b9-9b05-7b83888c1f7a"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=0.1)"",
                     ""initialStateCheck"": true
                 }
             ],
@@ -80,7 +80,7 @@ public partial class @GameInputSystem_Actions: IInputActionCollection2, IDisposa
                 {
                     ""name"": """",
                     ""id"": ""b38dad8a-c8ae-4faf-927d-d06e91793751"",
-                    ""path"": """",
+                    ""path"": ""<Mouse>/press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -140,7 +140,7 @@ public partial class @GameInputSystem_Actions: IInputActionCollection2, IDisposa
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""GameEnter"",
+                    ""name"": ""PlayEnter"",
                     ""type"": ""Button"",
                     ""id"": ""a3bf2e91-87c0-4190-81df-896d108304ca"",
                     ""expectedControlType"": """",
@@ -149,7 +149,7 @@ public partial class @GameInputSystem_Actions: IInputActionCollection2, IDisposa
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""GameExit"",
+                    ""name"": ""PlayExit"",
                     ""type"": ""Button"",
                     ""id"": ""6b114e1d-64dc-44ba-8b8b-d4d8b93a94ec"",
                     ""expectedControlType"": """",
@@ -210,7 +210,7 @@ public partial class @GameInputSystem_Actions: IInputActionCollection2, IDisposa
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""GameEnter"",
+                    ""action"": ""PlayEnter"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -221,7 +221,7 @@ public partial class @GameInputSystem_Actions: IInputActionCollection2, IDisposa
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""GameExit"",
+                    ""action"": ""PlayExit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -265,8 +265,8 @@ public partial class @GameInputSystem_Actions: IInputActionCollection2, IDisposa
         m_GlobalMode_PauseExit = m_GlobalMode.FindAction("PauseExit", throwIfNotFound: true);
         m_GlobalMode_BuildEnter = m_GlobalMode.FindAction("BuildEnter", throwIfNotFound: true);
         m_GlobalMode_BuildExit = m_GlobalMode.FindAction("BuildExit", throwIfNotFound: true);
-        m_GlobalMode_GameEnter = m_GlobalMode.FindAction("GameEnter", throwIfNotFound: true);
-        m_GlobalMode_GameExit = m_GlobalMode.FindAction("GameExit", throwIfNotFound: true);
+        m_GlobalMode_PlayEnter = m_GlobalMode.FindAction("PlayEnter", throwIfNotFound: true);
+        m_GlobalMode_PlayExit = m_GlobalMode.FindAction("PlayExit", throwIfNotFound: true);
     }
 
     ~@GameInputSystem_Actions()
@@ -432,8 +432,8 @@ public partial class @GameInputSystem_Actions: IInputActionCollection2, IDisposa
     private readonly InputAction m_GlobalMode_PauseExit;
     private readonly InputAction m_GlobalMode_BuildEnter;
     private readonly InputAction m_GlobalMode_BuildExit;
-    private readonly InputAction m_GlobalMode_GameEnter;
-    private readonly InputAction m_GlobalMode_GameExit;
+    private readonly InputAction m_GlobalMode_PlayEnter;
+    private readonly InputAction m_GlobalMode_PlayExit;
     public struct GlobalModeActions
     {
         private @GameInputSystem_Actions m_Wrapper;
@@ -443,8 +443,8 @@ public partial class @GameInputSystem_Actions: IInputActionCollection2, IDisposa
         public InputAction @PauseExit => m_Wrapper.m_GlobalMode_PauseExit;
         public InputAction @BuildEnter => m_Wrapper.m_GlobalMode_BuildEnter;
         public InputAction @BuildExit => m_Wrapper.m_GlobalMode_BuildExit;
-        public InputAction @GameEnter => m_Wrapper.m_GlobalMode_GameEnter;
-        public InputAction @GameExit => m_Wrapper.m_GlobalMode_GameExit;
+        public InputAction @PlayEnter => m_Wrapper.m_GlobalMode_PlayEnter;
+        public InputAction @PlayExit => m_Wrapper.m_GlobalMode_PlayExit;
         public InputActionMap Get() { return m_Wrapper.m_GlobalMode; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -469,12 +469,12 @@ public partial class @GameInputSystem_Actions: IInputActionCollection2, IDisposa
             @BuildExit.started += instance.OnBuildExit;
             @BuildExit.performed += instance.OnBuildExit;
             @BuildExit.canceled += instance.OnBuildExit;
-            @GameEnter.started += instance.OnGameEnter;
-            @GameEnter.performed += instance.OnGameEnter;
-            @GameEnter.canceled += instance.OnGameEnter;
-            @GameExit.started += instance.OnGameExit;
-            @GameExit.performed += instance.OnGameExit;
-            @GameExit.canceled += instance.OnGameExit;
+            @PlayEnter.started += instance.OnPlayEnter;
+            @PlayEnter.performed += instance.OnPlayEnter;
+            @PlayEnter.canceled += instance.OnPlayEnter;
+            @PlayExit.started += instance.OnPlayExit;
+            @PlayExit.performed += instance.OnPlayExit;
+            @PlayExit.canceled += instance.OnPlayExit;
         }
 
         private void UnregisterCallbacks(IGlobalModeActions instance)
@@ -494,12 +494,12 @@ public partial class @GameInputSystem_Actions: IInputActionCollection2, IDisposa
             @BuildExit.started -= instance.OnBuildExit;
             @BuildExit.performed -= instance.OnBuildExit;
             @BuildExit.canceled -= instance.OnBuildExit;
-            @GameEnter.started -= instance.OnGameEnter;
-            @GameEnter.performed -= instance.OnGameEnter;
-            @GameEnter.canceled -= instance.OnGameEnter;
-            @GameExit.started -= instance.OnGameExit;
-            @GameExit.performed -= instance.OnGameExit;
-            @GameExit.canceled -= instance.OnGameExit;
+            @PlayEnter.started -= instance.OnPlayEnter;
+            @PlayEnter.performed -= instance.OnPlayEnter;
+            @PlayEnter.canceled -= instance.OnPlayEnter;
+            @PlayExit.started -= instance.OnPlayExit;
+            @PlayExit.performed -= instance.OnPlayExit;
+            @PlayExit.canceled -= instance.OnPlayExit;
         }
 
         public void RemoveCallbacks(IGlobalModeActions instance)
@@ -532,7 +532,7 @@ public partial class @GameInputSystem_Actions: IInputActionCollection2, IDisposa
         void OnPauseExit(InputAction.CallbackContext context);
         void OnBuildEnter(InputAction.CallbackContext context);
         void OnBuildExit(InputAction.CallbackContext context);
-        void OnGameEnter(InputAction.CallbackContext context);
-        void OnGameExit(InputAction.CallbackContext context);
+        void OnPlayEnter(InputAction.CallbackContext context);
+        void OnPlayExit(InputAction.CallbackContext context);
     }
 }

@@ -1,16 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Input_PlayMode: BaseState<GameInputSystem_Actions>
+public class Input_PlayMode: BaseState<GameInputSystem_Actions>, GameInputSystem_Actions.IPlayModeActions
 {
-    private InputAction clickAction;
-    private InputAction dragAction;
-    
-    
     public override void Init(GameInputSystem_Actions context)
     {
-        // clickAction = context.GameMode.Click;
-        // dragAction = context.GameMode.Drag;        
     }
 
     public override void EnterState(GameInputSystem_Actions context)
@@ -18,18 +12,16 @@ public class Input_PlayMode: BaseState<GameInputSystem_Actions>
         base.EnterState(context);
         Root.Instance.Input_PlayMode = true;
         
-        // Подписка на действия
-        // clickAction.performed += OnClickPerformed;
-        // dragAction.performed += OnDragPerformed;
+        context.PlayMode.Enable();
+        context.PlayMode.SetCallbacks(this);
     }
 
     public override void ExitState(GameInputSystem_Actions context)
     {
         Root.Instance.Input_PlayMode = false;
         
-        // Отписка от действий
-        // clickAction.performed -= OnClickPerformed;
-        // dragAction.performed -= OnDragPerformed;
+        context.PlayMode.Disable();
+        context.PlayMode.RemoveCallbacks(this);
     }
 
     public override void UpdateState(GameInputSystem_Actions context)
@@ -37,13 +29,9 @@ public class Input_PlayMode: BaseState<GameInputSystem_Actions>
         //Nothing - its NOT call 
     }
 
-    private void OnClickPerformed(InputAction.CallbackContext context)
+    public void OnClick(InputAction.CallbackContext context)
     {
-        //Do something
-    }
-
-    private void OnDragPerformed(InputAction.CallbackContext context)
-    {
-        //Do something
+        Debug.Log("Playmode Click "+ context.phase);
+        Root.Instance.inputLogic.ClickTo(context.phase);
     }
 }
