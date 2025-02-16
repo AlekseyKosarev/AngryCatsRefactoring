@@ -35,7 +35,10 @@ public class Root: Singleton<Root>
     public bool Material_BuildMode = false;
     public bool Material_PlayMode = false;
     public bool Material_PauseMode = false;
-    
+    //LAUNCHER
+    public bool LAUNCHER_BuildMode = false;
+    public bool LAUNCHER_PlayMode = false;
+    public bool LAUNCHER_PauseMode = false;
     
     private void Start()
     {

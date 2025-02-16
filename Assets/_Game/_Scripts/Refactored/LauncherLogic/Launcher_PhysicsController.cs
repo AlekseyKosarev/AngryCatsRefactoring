@@ -1,0 +1,22 @@
+using UnityEngine;
+
+public class Launcher_PhysicsController: MonoBehaviour
+{
+    [SerializeField] private Collider2D collider;
+
+    private void Start()
+    {
+        // _rigidbody = GetComponent<Rigidbody2D>();
+        collider.isTrigger = true;
+    }
+
+    public void PausePhysics()
+    {
+        collider.enabled = false;
+    }
+
+    public void ResumePhysics()
+    {
+        collider.enabled = true;
+    }
+}

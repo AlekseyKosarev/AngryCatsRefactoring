@@ -5,7 +5,7 @@ public class MaterialInputHandler: MonoBehaviour, IClickable
     public bool inputEnabled;
     
     private bool _selected = false;
-    private bool _dragged = false;
+    private bool _isDragged = false;
     
     private BaseMaterial _material;
     private InputData _inputData;
@@ -26,9 +26,9 @@ public class MaterialInputHandler: MonoBehaviour, IClickable
     {
         if (!inputEnabled) return;
         Debug.Log("up");
-        if(!_dragged)
+        if(!_isDragged)
             _selected = !_selected;
-        _dragged = false;
+        _isDragged = false;
         
     }
 
@@ -37,14 +37,14 @@ public class MaterialInputHandler: MonoBehaviour, IClickable
         if (!inputEnabled) return;
         Debug.Log("performed");
 
-        _dragged = true;
+        _isDragged = true;
     }
 
     private void Update()
     {
         if (!inputEnabled) return;
         
-        if (_dragged)
+        if (_isDragged)
         {
             var mousePosition = Root.Instance.inputLogic.GetMouseWorldPosition();
             var dir = new Vector3(mousePosition.x, mousePosition.y, 0);

@@ -59,7 +59,6 @@ public class BaseMaterial: MonoBehaviour, IPausable, IBuildable, IPlayable
         _states.SwitchToState<Material_PlayMode>(materialData);
     }
     
-    //TODO build mode logic
     public void BuildMode_Enable()
     {
         _states.SwitchToState<Material_BuildMode>(materialData);
