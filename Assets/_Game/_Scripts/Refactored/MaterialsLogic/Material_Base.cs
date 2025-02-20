@@ -2,31 +2,32 @@ using StateMachine.StateMachineSystems;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class BaseMaterial: MonoBehaviour, IPausable, IBuildable, IPlayable
+[RequireComponent(typeof(Material_Physics))]
+[RequireComponent(typeof(Material_View))]
+[RequireComponent(typeof(Material_InputHandler))]
+public class Material_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
 {
-    private StateMachine<MaterialContext> _states;
-    private MaterialContext materialData;
+    private StateMachine<Material_Context> _states;
+    private Material_Context materialData;
     
     //materialData
     private Rigidbody2D rb;
-    private MaterialView view;
-    private MaterialInputHandler inputHandler;
+    private Material_Physics physics;
+    private Material_View view;
+    private Material_InputHandler inputHandler;
     public void Init()
     {
         rb = GetComponent<Rigidbody2D>();
-        view = GetComponent<MaterialView>();
-        inputHandler = GetComponent<MaterialInputHandler>();
-        materialData = new MaterialContext(rb, transform, view, inputHandler);
-    }
-
-    private void Awake()
-    {
-        Init();
+        physics = GetComponent<Material_Physics>();
+        view = GetComponent<Material_View>();
+        inputHandler = GetComponent<Material_InputHandler>();
+        materialData = new Material_Context(rb, transform, view, inputHandler, physics);
     }
 
     private void Start()
     {
-        _states = new StateMachineBuilder<MaterialContext>()
+        Init();
+        _states = new StateMachineBuilder<Material_Context>()
             .AddState(new Material_PlayMode())
             .AddState(new Material_BuildMode())
             .AddState(new Material_PauseMode())

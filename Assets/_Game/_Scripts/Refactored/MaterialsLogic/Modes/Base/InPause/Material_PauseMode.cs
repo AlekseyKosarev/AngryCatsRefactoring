@@ -1,24 +1,24 @@
 using UnityEngine;
 
-public class Material_PauseMode: BaseState<MaterialContext>
+public class Material_PauseMode: BaseState<Material_Context>
 {
-    public override void Init(MaterialContext context)
+    public override void Init(Material_Context context)
     {
         //nothing
     }
 
-    public override void EnterState(MaterialContext context)
+    public override void EnterState(Material_Context context)
     {
         Root.Instance.Material_PauseMode = true;
         
         context.View.StopActiveEffects();
     }
-    public override void ExitState(MaterialContext context)
+    public override void ExitState(Material_Context context)
     {
         Root.Instance.Material_PauseMode = false;
     }
 
-    public override void UpdateState(MaterialContext context)
+    public override void UpdateState(Material_Context context)
     {
         
     }

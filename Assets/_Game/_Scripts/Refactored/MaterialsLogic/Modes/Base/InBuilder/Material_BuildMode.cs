@@ -1,17 +1,17 @@
 using System;
 using UnityEngine;
 
-public class Material_BuildMode: BaseState<MaterialContext>
+public class Material_BuildMode: BaseState<Material_Context>
 {
     // private StateMachine<MaterialContext> _statesInBuildMode;
     private bool _selected = false;
     
-    public override void Init(MaterialContext context)
+    public override void Init(Material_Context context)
     {
         Debug.Log("BUILDMode INIT");
     }
 
-    public override void EnterState(MaterialContext context)
+    public override void EnterState(Material_Context context)
     {
         Root.Instance.Material_BuildMode = true;
         context.Rb.bodyType = RigidbodyType2D.Kinematic;
@@ -19,14 +19,14 @@ public class Material_BuildMode: BaseState<MaterialContext>
         context.InputHandler.inputEnabled = true;
     }
 
-    public override void ExitState(MaterialContext context)
+    public override void ExitState(Material_Context context)
     {
         Root.Instance.Material_BuildMode = false;
         
         context.InputHandler.inputEnabled = false;
     }
 
-    public override void UpdateState(MaterialContext context)
+    public override void UpdateState(Material_Context context)
     {
         var inputData = context.InputData;
         // if(inputData.MoveType == MoveType.None) return;
@@ -46,21 +46,21 @@ public class Material_BuildMode: BaseState<MaterialContext>
     }
 
     
-    private void Selected(MaterialContext context)
+    private void Selected(Material_Context context)
     {
         _selected = true;
         context.View.SetSelectedColor();
         
         // _statesInBuildMode.SetStateActive<CanMoved>(true, context);
     }
-    private void Deselected(MaterialContext context)
+    private void Deselected(Material_Context context)
     {
         _selected = false;
         context.View.SetDefaultColor();
         // _statesInBuildMode.SetStateActive<CanMoved>(false, context);
     }
     
-    private void UpdateMovement(MaterialContext context)
+    private void UpdateMovement(Material_Context context)
     {
         if(context.InputData.Direction == Vector3.zero) return;
         switch (context.InputData.MoveType)
@@ -73,7 +73,7 @@ public class Material_BuildMode: BaseState<MaterialContext>
                 break;
         }
     }
-    private void Drag(MaterialContext context)
+    private void Drag(Material_Context context)
     {
         // Debug.Log("drag move");
         context.Transform.position = Move(context.InputData.Direction);
@@ -91,7 +91,7 @@ public class Material_BuildMode: BaseState<MaterialContext>
         
         return toMovePos;
     }
-    private void MoveStep(MaterialContext context)
+    private void MoveStep(Material_Context context)
     {
         Debug.Log("step move");
         var moveVector = context.InputData.Direction;

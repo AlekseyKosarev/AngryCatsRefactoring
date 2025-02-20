@@ -1,9 +1,10 @@
 using StateMachine.StateMachineSystems;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GlobalModesToggle: MonoBehaviour
 {
-    public BaseMaterial materialPrefab;//pausable
+    [FormerlySerializedAs("materialPrefab")] public Material_Base prefab;//pausable
     
     private StateMachine<EmptyContext> _statesGame;
     private void Init()
@@ -20,11 +21,11 @@ public class GlobalModesToggle: MonoBehaviour
         //switch pause|game - space
         if (Input.GetKeyDown(KeyCode.P))
         {
-            materialPrefab.PauseMode_Enable();
+            prefab.PauseMode_Enable();
         }
         if (Input.GetKeyDown(KeyCode.G))
         {
-            materialPrefab.EnterPlayMode();
+            prefab.EnterPlayMode();
         }
 
         // //build mode

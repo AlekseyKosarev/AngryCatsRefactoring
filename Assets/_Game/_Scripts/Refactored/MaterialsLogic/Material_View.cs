@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MaterialView: MonoBehaviour
+public class Material_View: MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
     public Color selectedColor;

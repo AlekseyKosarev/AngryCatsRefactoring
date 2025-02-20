@@ -1,18 +1,18 @@
 using UnityEngine;
 
-public class MaterialInputHandler: MonoBehaviour, IDraggable
+public class Material_InputHandler: MonoBehaviour, IDraggable
 {
     public bool inputEnabled;
     
     private bool _selected = false;
     private bool _isDragged = false;
     
-    private BaseMaterial _material;
+    private Material_Base _material;
     private InputData _inputData;
 
     private void Awake()
     {
-        _material = GetComponent<BaseMaterial>();
+        _material = GetComponent<Material_Base>();
         _inputData = new InputData();
     }
 
