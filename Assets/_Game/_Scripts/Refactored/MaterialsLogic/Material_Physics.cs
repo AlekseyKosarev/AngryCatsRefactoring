@@ -10,16 +10,33 @@ public class Material_Physics: MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    public void PausePhysics()
+    public void Off_NoSaveVelocity()
     {
-        _savedVelocity = _rigidbody.linearVelocity;
-        _rigidbody.linearVelocity = Vector2.zero;
+        ClearVelocity();
         _rigidbody.bodyType = RigidbodyType2D.Kinematic;
     }
-
-    public void ResumePhysics()
+    public void Off_SaveVelocity()
     {
+        SaveVelocity();
+        _rigidbody.bodyType = RigidbodyType2D.Kinematic;
+    }
+    public void SetPlayMode()
+    {
+        LoadVelocity();
         _rigidbody.bodyType = RigidbodyType2D.Dynamic;
+    }
+    private void SaveVelocity()
+    {
+        _savedVelocity = _rigidbody.linearVelocity;
+        ClearVelocity();
+    }
+    private void LoadVelocity()
+    {
         _rigidbody.linearVelocity = _savedVelocity;
     }
+    private void ClearVelocity()
+    {
+        _rigidbody.linearVelocity = Vector2.zero;
+    }
+    
 }

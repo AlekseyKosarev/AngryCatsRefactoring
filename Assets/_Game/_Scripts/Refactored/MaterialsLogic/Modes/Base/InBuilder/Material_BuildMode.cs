@@ -14,16 +14,16 @@ public class Material_BuildMode: BaseState<Material_Context>
     public override void EnterState(Material_Context context)
     {
         Root.Instance.Material_BuildMode = true;
-        context.Rb.bodyType = RigidbodyType2D.Kinematic;
-        
-        context.InputHandler.inputEnabled = true;
+        // context.Rb.bodyType = RigidbodyType2D.Kinematic;
+        context.Physics.Off_NoSaveVelocity();
+        context.InputHandler.InputEnabled = true;
     }
 
     public override void ExitState(Material_Context context)
     {
         Root.Instance.Material_BuildMode = false;
         
-        context.InputHandler.inputEnabled = false;
+        context.InputHandler.InputEnabled = false;
     }
 
     public override void UpdateState(Material_Context context)

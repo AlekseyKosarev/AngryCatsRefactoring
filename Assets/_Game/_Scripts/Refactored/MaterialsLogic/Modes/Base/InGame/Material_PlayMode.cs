@@ -14,14 +14,14 @@ public class Material_PlayMode: BaseState<Material_Context>
         //вот тут по контексту могу получить ссылку на все необходимые компоненты
         
         //включение физики
-        context.Rb.bodyType = RigidbodyType2D.Dynamic;//TODO сделать функцию для включение/выключения физики
+        context.Physics.SetPlayMode();
     }
 
     public override void ExitState(Material_Context context)
     {
         Root.Instance.Material_PlayMode = false;
         //выключение физики
-        context.Rb.bodyType = RigidbodyType2D.Kinematic;
+        // context.Physics.Off_SaveVelocity();//TODO 
     }
 
     public override void UpdateState(Material_Context context)
