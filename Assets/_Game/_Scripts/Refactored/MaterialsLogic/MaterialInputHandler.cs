@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MaterialInputHandler: MonoBehaviour, IClickable
+public class MaterialInputHandler: MonoBehaviour, IDraggable
 {
     public bool inputEnabled;
     
@@ -16,49 +16,35 @@ public class MaterialInputHandler: MonoBehaviour, IClickable
         _inputData = new InputData();
     }
 
-    public void OnClickDown()
-    {
-        if (!inputEnabled) return;
-        Debug.Log("down");
-    }
+    public void OnClickDown(Vector2 worldPointerPosition){}
 
-    public void OnClickUp()
+    public void OnClickUp(Vector2 worldPointerPosition)
     {
-        if (!inputEnabled) return;
-        Debug.Log("up");
         if(!_isDragged)
             _selected = !_selected;
-        _isDragged = false;
-        
+        _inputData.Selected = _selected;
     }
 
-    public void OnClickPerformed()
+    public void OnClickPerformed(Vector2 worldPointerPosition)
     {
-        if (!inputEnabled) return;
-        Debug.Log("performed");
-
         _isDragged = true;
     }
 
-    private void Update()
+    public void OnDrag(Vector2 worldPointerPosition)
     {
-        if (!inputEnabled) return;
+        var dir = new Vector3(worldPointerPosition.x, worldPointerPosition.y, 0);
+        _inputData.Direction = dir;
+        _inputData.MoveType = MoveType.Drag;
         
-        if (_isDragged)
-        {
-            var mousePosition = Root.Instance.inputLogic.GetMouseWorldPosition();
-            var dir = new Vector3(mousePosition.x, mousePosition.y, 0);
-            _inputData.Direction = dir;
-            _inputData.MoveType = MoveType.Drag;
-        }
-        else
-        {
-            _inputData.Direction = Vector3.zero;
-            _inputData.MoveType = MoveType.None;
-        }
-        _inputData.Selected = _selected;
-        // Debug.Log("selected = " + _selected + " dragged = " + _dragged + " direction = " + _inputData.Direction);
+        _material.SetInputData(_inputData);
+    }
 
+    public void OnEndDrag(Vector2 worldPointerPosition)
+    {
+        _isDragged = false;
+        _inputData.Direction = Vector3.zero;
+        _inputData.MoveType = MoveType.None;
+        
         _material.SetInputData(_inputData);
     }
 }

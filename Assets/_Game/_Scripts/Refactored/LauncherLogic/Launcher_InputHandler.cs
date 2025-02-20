@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Launcher_InputHandler: MonoBehaviour, IClickable
+public class Launcher_InputHandler: MonoBehaviour, IDraggable
 {
     private bool _inputEnabled = true;
     private bool _isDragging;
@@ -23,32 +23,31 @@ public class Launcher_InputHandler: MonoBehaviour, IClickable
         _inputEnabled = false;
     }
 
-    public void OnClickDown()
+    public void OnClickDown(Vector2 worldPointerPosition)
     {
         if (!_inputEnabled) return;
-        Debug.Log("LAUNCHER DOWN");
+        Debug.Log("LAUNCHER BeginDrag");
+        _startPosition = worldPointerPosition;
         _isDragging = true;
-        _startPosition = Root.Instance.inputLogic.GetMouseWorldPosition();
     }
 
-    public void OnClickUp()
+    public void OnClickUp(Vector2 worldPointerPosition){}
+
+    public void OnClickPerformed(Vector2 worldPointerPosition){}
+    
+
+    public void OnDrag(Vector2 worldPointerPosition)
     {
         if (!_inputEnabled) return;
-        Debug.Log("LAUNCHER UP");
+        Debug.Log("LAUNCHER OnDrag");
+        _endPosition = worldPointerPosition;
+    }
+
+    public void OnEndDrag(Vector2 worldPointerPosition)
+    {
+        if (!_inputEnabled) return;
+        Debug.Log("LAUNCHER EndDrag");
+        _endPosition = worldPointerPosition;
         _isDragging = false;
-        _endPosition = Root.Instance.inputLogic.GetMouseWorldPosition();
-    }
-
-    public void OnClickPerformed()
-    {
-        if (!_inputEnabled) return;
-        _endPosition = Root.Instance.inputLogic.GetMouseWorldPosition();
-    }
-
-    public void Update()
-    {
-        if (!_inputEnabled) return;
-        if (!_isDragging) return;
-        _endPosition = Root.Instance.inputLogic.GetMouseWorldPosition();
     }
 }

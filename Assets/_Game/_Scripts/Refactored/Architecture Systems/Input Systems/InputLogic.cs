@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,10 +6,13 @@ public class InputLogic: MonoBehaviour
 {
     private Camera mainCamera;
     private InputAction pointerPosition;
+
+    private List<IDraggable> draggingObjects;
     private void Init()
     {
         mainCamera = Root.Instance.mainCamera;
         pointerPosition = Root.Instance.InputActions.GlobalMode.PointerPosition;
+        draggingObjects = new List<IDraggable>();
     }
     private void Start()
     {
@@ -17,9 +21,9 @@ public class InputLogic: MonoBehaviour
     private bool TryRayToPoint(Vector2 screenPosition, out RaycastHit2D hit)
     {
         Ray ray = mainCamera.ScreenPointToRay(screenPosition);
-        // Cast the ray in the 2D world
         hit = Physics2D.Raycast(ray.origin, ray.direction);
-        return hit.collider != null; // Returns true if there was a hit
+        
+        return hit.collider != null; 
     }
     private Vector2 GetMousePosition()
     {
@@ -39,19 +43,41 @@ public class InputLogic: MonoBehaviour
             IClickable clickable = hit.collider.GetComponent<IClickable>();
             if (clickable != null)
             {
-                switch (clickPhase)// Вызываем метод OnClickDown или OnClickUp
+                switch (clickPhase)
                 {
                     case InputActionPhase.Started:
-                        clickable.OnClickDown();
+                        clickable.OnClickDown(GetMouseWorldPosition());
+                        if (clickable is IDraggable draggable)
+                        {
+                            draggingObjects.Add(draggable);
+                        }
                         break;
                     case InputActionPhase.Canceled:
-                        clickable.OnClickUp();
+                        clickable.OnClickUp(GetMouseWorldPosition());
                         break;
                     case InputActionPhase.Performed:
-                        clickable.OnClickPerformed();
+                        clickable.OnClickPerformed(GetMouseWorldPosition());
                         break;
                 }
             }
+        }
+        
+        if (clickPhase == InputActionPhase.Canceled)
+        {
+            foreach (IDraggable draggable in draggingObjects)
+            {
+                draggable.OnEndDrag(GetMouseWorldPosition());
+            }
+            draggingObjects.Clear();
+        }
+    }
+    private void Update()
+    {
+        if (draggingObjects.Count == 0) return;
+        
+        foreach (IDraggable draggable in draggingObjects)
+        {
+            draggable.OnDrag(GetMouseWorldPosition());
         }
     }
 }
