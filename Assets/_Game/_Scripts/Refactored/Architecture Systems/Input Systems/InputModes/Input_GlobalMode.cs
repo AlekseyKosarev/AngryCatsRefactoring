@@ -34,35 +34,22 @@ public class Input_GlobalMode: BaseState<GameInputSystem_Actions>, GameInputSyst
         // throw new System.NotImplementedException();
     }
 
-    public void OnPauseEnter(InputAction.CallbackContext context)
+    public void OnPauseToggle(InputAction.CallbackContext context)
     {
-        Debug.Log("Pause enter Click");
-        Root.Instance.PausableRegistry.EnterPauseMode();
+        if(context.performed)
+            Root.Instance.globalModesToggle.TogglePauseMode();
+            // PausableRegistry.TogglePauseMode();
     }
-
-    public void OnPauseExit(InputAction.CallbackContext context)
+    public void OnBuildToggle(InputAction.CallbackContext context)
     {
-        Debug.Log("Pause exit Click");
-        Root.Instance.PausableRegistry.ExitPauseMode();
+        if(context.performed)
+           Root.Instance.globalModesToggle.ActivateBuildMode();
+            // BuildableRegistry.ToggleBuildMode();
     }
-
-    public void OnBuildEnter(InputAction.CallbackContext context)
+    public void OnPlayToggle(InputAction.CallbackContext context)
     {
-        Root.Instance.BuildableRegistry.EnterBuildMode();
-    }
-
-    public void OnBuildExit(InputAction.CallbackContext context)
-    {
-        Root.Instance.BuildableRegistry.ExitBuildMode();
-    }
-
-    public void OnPlayEnter(InputAction.CallbackContext context)
-    {
-        Root.Instance.PlayableRegistry.EnterPlayMode();
-    }
-
-    public void OnPlayExit(InputAction.CallbackContext context)
-    {
-        Root.Instance.PlayableRegistry.ExitPlayMode();
+        if(context.performed)
+            Root.Instance.globalModesToggle.ActivatePlayMode();
+            // PlayableRegistry.TogglePlayMode();
     }
 }

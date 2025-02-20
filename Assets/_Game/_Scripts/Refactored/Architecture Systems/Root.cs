@@ -8,11 +8,14 @@ public class Root: Singleton<Root>
     //MainCamera
     [HideInInspector] public Camera mainCamera;
     
+    //Global Modes
+    public GlobalModesToggle globalModesToggle;
+    
     //Input
     public GameInputSystem_Actions InputActions;
     public InputLogic inputLogic;
     public InputModeToggle inputModeToggle;
-
+    
     //Registry systems
     public FORTESET_GameObject_Container gameObjectContainer;
     public PausableRegistry PausableRegistry;
@@ -49,6 +52,12 @@ public class Root: Singleton<Root>
     {
         mainCamera = Camera.main;
         InputActions = new GameInputSystem_Actions();
+        
+        inputModeToggle.Init();
+        
+        globalModesToggle = new GlobalModesToggle();
+        globalModesToggle.ActivateMenuMode();//TODO refactor later maybe
+        
         //Init Registry
         PausableRegistry = new PausableRegistry();
         PausableRegistry.AddRange(gameObjectContainer.GetIPausableObjects());

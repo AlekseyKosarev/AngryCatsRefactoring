@@ -2,12 +2,10 @@ using StateMachine.StateMachineSystems;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class GlobalModesToggle: MonoBehaviour
+public class GlobalModesToggle
 {
-    [FormerlySerializedAs("materialPrefab")] public Material_Base prefab;//pausable
-    
     private StateMachine<EmptyContext> _statesGame;
-    private void Init()
+    public GlobalModesToggle()
     {
         _statesGame = new StateMachineBuilder<EmptyContext>()
             .AddState(new Global_BuildMode())
@@ -15,28 +13,8 @@ public class GlobalModesToggle: MonoBehaviour
             .AddState(new Global_PauseMode())
             .AddState(new Global_PlayMode())
             .Build();
-    }
-    private void Update()
-    {
-        //switch pause|game - space
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            prefab.PauseMode_Enable();
-        }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            prefab.EnterPlayMode();
-        }
-
-        // //build mode
-        // if (Input.GetKeyDown(KeyCode.B))
-        // {
-        //     materialPrefab.EnterBuildMode();
-        // }
-        // if (Input.GetKeyDown(KeyCode.E))
-        // {
-        //     materialPrefab.ExitBuildMode();
-        // }
+        
+        // ActivateMenuMode();
     }
 
     public void ActivateBuildMode()
@@ -54,9 +32,17 @@ public class GlobalModesToggle: MonoBehaviour
         _statesGame.SwitchToState<Global_MenuMode>(new EmptyContext());
     }
 
-    public void ActivatePauseMode()//пауза может быть поверх других состояний
+    public void TogglePauseMode()//пауза может быть поверх других состояний
     {
-        _statesGame.SetStateActive<Global_PauseMode>(true, new EmptyContext());
+        
+        if (_statesGame.IsStateActive(_statesGame.GetStateFromRegistry<Global_PauseMode>()))
+        {
+            _statesGame.SetStateActive<Global_PauseMode>(false, new EmptyContext());
+        }
+        else
+        {
+            _statesGame.SetStateActive<Global_PauseMode>(true, new EmptyContext());
+        }
     }
     public void DeactivatePauseMode()
     {

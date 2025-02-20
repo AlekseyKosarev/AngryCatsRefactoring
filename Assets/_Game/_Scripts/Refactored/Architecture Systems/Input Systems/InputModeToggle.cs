@@ -7,11 +7,11 @@ public class InputModeToggle: MonoBehaviour, IPausable, IBuildable, IPlayable
 
     private GameInputSystem_Actions inputActions;
     
-    private void Start()
-    {
-        Init();
-    }
-    private void Init()
+    // private void Awake()
+    // {
+    //     Init();
+    // }
+    public void Init()
     {
         inputActions = Root.Instance.InputActions;
 
@@ -21,7 +21,7 @@ public class InputModeToggle: MonoBehaviour, IPausable, IBuildable, IPlayable
             .AddState(new Input_GlobalMode())
             .Build();
         
-        GlobalMode_Enable();
+        // GlobalMode_Enable();
     }
 
     public void BuildMode_Enable() => _inputModes.SetStateActive<Input_BuildMode>(true, inputActions);
@@ -37,12 +37,15 @@ public class InputModeToggle: MonoBehaviour, IPausable, IBuildable, IPlayable
     
     public void PauseMode_Enable()
     {
+        Debug.Log("INPUT TO PAUSE MODE");
         _inputModes.SaveCurrentStatesToPrevious();
+        _inputModes.DeactivateAllStates(inputActions);
         _inputModes.SwitchToState<Input_GlobalMode>(inputActions);//TODO someone will need add PAUSE mode later 
     }
 
     public void PauseMode_Disable()
     {
+        Debug.Log("INPUT TO PREVIOUS MODE");
         _inputModes.ActivatePreviousStates(inputActions);
     }
 }

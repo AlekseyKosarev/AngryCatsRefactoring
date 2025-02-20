@@ -18,6 +18,9 @@ public class Global_BuildMode: BaseState<EmptyContext>
         // - спавнер объектов переходит в активный режим
         // - спавнер включает режим строительства у всех объектов
         Root.Instance.BuildableRegistry.EnterBuildMode();
+        // Root.Instance.PausableRegistry.EnterBuildMode();
+        Root.Instance.PlayableRegistry.ExitPlayMode();
+        
     }
 
     public override void ExitState(EmptyContext context)

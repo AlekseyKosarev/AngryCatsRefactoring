@@ -16,6 +16,7 @@ public class Global_PlayMode: BaseState<EmptyContext>
         // - спавнится лвл 
         // - спавнер включает режим игры у всех объектов
         Root.Instance.PlayableRegistry.EnterPlayMode();
+        Root.Instance.BuildableRegistry.ExitBuildMode();
     }
 
     public override void ExitState(EmptyContext context)

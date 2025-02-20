@@ -31,7 +31,7 @@ public class Input_PlayMode: BaseState<GameInputSystem_Actions>, GameInputSystem
 
     public void OnClick(InputAction.CallbackContext context)
     {
-        Debug.Log("Playmode Click "+ context.phase);
+        // Debug.Log("Playmode Click "+ context.phase);
         Root.Instance.inputLogic.ClickTo(context.phase);
     }
 }

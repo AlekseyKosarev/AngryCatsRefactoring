@@ -8,6 +8,8 @@ public class Global_MenuMode: BaseState<EmptyContext>
     public override void EnterState(EmptyContext context)
     {
         Root.Instance.Global_MenuMode = true;
+        
+        Root.Instance.inputModeToggle.GlobalMode_Enable();
     }
 
     public override void ExitState(EmptyContext context)

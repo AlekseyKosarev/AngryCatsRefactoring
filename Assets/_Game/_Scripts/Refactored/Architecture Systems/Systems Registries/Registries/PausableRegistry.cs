@@ -4,7 +4,7 @@ using UnityEngine;
 public class PausableRegistry
 {
     private List<IPausable> _pausableObjects = new();
-
+    private bool _modeActive = false;
     public void Add(IPausable pausableObject) => _pausableObjects.Add(pausableObject);
     public void AddRange(List<IPausable> pausableObjects) => _pausableObjects.AddRange(pausableObjects);
     
@@ -16,6 +16,7 @@ public class PausableRegistry
     
     public void EnterPauseMode()
     {
+        _modeActive = true;
         foreach (var pausableObject in _pausableObjects)
         {
             if (pausableObject != null)
@@ -31,6 +32,7 @@ public class PausableRegistry
 
     public void ExitPauseMode()
     {
+        _modeActive = false;
         foreach (var pausableObject in _pausableObjects)
         {
             if (pausableObject != null)
@@ -43,5 +45,11 @@ public class PausableRegistry
             }
         }
     }
-    
+    private void TogglePauseMode()
+    {
+        if(_modeActive)
+            ExitPauseMode();
+        else
+            EnterPauseMode();
+    }
 }
