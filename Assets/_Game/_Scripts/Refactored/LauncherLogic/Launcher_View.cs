@@ -4,12 +4,16 @@ public class Launcher_View : MonoBehaviour
 {
     [SerializeField] private LineRenderer lineRope;
     [SerializeField] private LineRenderer lineTrajectory;
+    [SerializeField] private GameObject  endPointSprite;
     
     [SerializeField] private int verts = 10;
     [SerializeField] private float simulationTimeStep = 0.1f;
     [SerializeField] private LayerMask collisionMask;
     // [SerializeField] private ParticleSystem _launchEffect;
-
+    private void Start()
+    {
+        endPointSprite.SetActive(false);
+    }
     public void EnableEffects()
     {
         // _launchEffect.Play();
@@ -21,6 +25,7 @@ public class Launcher_View : MonoBehaviour
     }
     public void DrawTrajectory(Vector2 startPos, Vector2 direction, float velocity, float mass)
     {
+        endPointSprite.SetActive(false);
         direction = -direction; // Инвертируем направление
 
         Vector2 initialVelocity = direction * velocity; // Начальная скорость
@@ -41,6 +46,9 @@ public class Launcher_View : MonoBehaviour
                 lineTrajectory.SetPosition(i, new Vector3(hitPoint.x, hitPoint.y, 0));
 
                 lineTrajectory.positionCount = i + 1;
+                
+                endPointSprite.SetActive(true);
+                endPointSprite.transform.position = new Vector3(hitPoint.x, hitPoint.y, 0);
                 break; // Завершаем расчет
             }
 
@@ -64,6 +72,7 @@ public class Launcher_View : MonoBehaviour
     }
     public void ClearTrajectory()
     {
+        endPointSprite.SetActive(false);
         lineTrajectory.positionCount = 0;
     }
     public void DrawRope(Vector2 startPos, Vector2 endPos)
