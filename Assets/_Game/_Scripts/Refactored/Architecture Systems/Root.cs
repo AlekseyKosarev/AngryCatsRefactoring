@@ -1,3 +1,4 @@
+using _Game._Scripts.Copy;
 using UnityEngine;
 
 public class Root: Singleton<Root>

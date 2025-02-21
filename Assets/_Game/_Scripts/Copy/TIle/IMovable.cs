@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace BuildSystem
+namespace _Game._Scripts.Copy.TIle
 {
     public interface IMovable: IPointerClickHandler, IPointerUpHandler, IDragHandler
     {

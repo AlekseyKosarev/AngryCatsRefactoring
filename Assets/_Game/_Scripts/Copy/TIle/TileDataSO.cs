@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BuildSystem
+namespace _Game._Scripts.Copy.TIle
 {
     [CreateAssetMenu(fileName = "Tile Data", menuName = "BuildSystem/TileData", order = 1)]
     public class TileDataSO : ScriptableObject

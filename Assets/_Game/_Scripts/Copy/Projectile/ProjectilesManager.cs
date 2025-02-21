@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Projectile
+namespace _Game._Scripts.Copy.Projectile
 {
     public class ProjectilesManager: Singleton<ProjectilesManager>
     {

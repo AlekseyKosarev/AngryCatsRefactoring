@@ -1,8 +1,7 @@
-
 using System.Collections.Generic;
-using Projectile;
+using _Game._Scripts.Copy.Projectile;
 
-namespace SaveServices.Structs
+namespace _Game._Scripts.Copy.Structs
 {
     public struct MapData
     {

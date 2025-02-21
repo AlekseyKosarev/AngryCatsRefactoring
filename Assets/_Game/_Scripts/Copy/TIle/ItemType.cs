@@ -1,6 +1,9 @@
-public enum ItemType
+namespace _Game._Scripts.Copy.TIle
 {
-    Wood,
-    Stone,
-    Glass,
+    public enum ItemType
+    {
+        Wood,
+        Stone,
+        Glass,
+    }
 }

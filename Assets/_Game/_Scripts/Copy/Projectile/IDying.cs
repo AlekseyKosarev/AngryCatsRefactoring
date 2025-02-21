@@ -1,7 +1,10 @@
 using System;
 
-public interface IDying
+namespace _Game._Scripts.Copy.Projectile
 {
-    public Action DieCallback { get; set; }
-    protected internal void Die();// maybe IEnumerator....
+    public interface IDying
+    {
+        public Action DieCallback { get; set; }
+        protected internal void Die();// maybe IEnumerator....
+    }
 }

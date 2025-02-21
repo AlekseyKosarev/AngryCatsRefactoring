@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using _Game._Scripts.Copy.Projectile;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using DG.Tweening;
 
-namespace BuildSystem
+namespace _Game._Scripts.Copy.TIle
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Collider2D))]

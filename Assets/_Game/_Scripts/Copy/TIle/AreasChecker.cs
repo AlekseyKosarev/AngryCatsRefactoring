@@ -1,8 +1,6 @@
-using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-namespace BuildSystem
+namespace _Game._Scripts.Copy.TIle
 {
     public class AreasChecker: Singleton<AreasChecker>
     {
