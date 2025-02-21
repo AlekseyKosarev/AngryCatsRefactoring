@@ -22,6 +22,9 @@ public class Root: Singleton<Root>
     public BuildableRegistry BuildableRegistry;
     public PlayableRegistry PlayableRegistry;
     
+    //UI
+    public UIScreenSwitcher uiScreenSwitcher;
+    
     //ACTIVE STATES
     
     //GLOBAL

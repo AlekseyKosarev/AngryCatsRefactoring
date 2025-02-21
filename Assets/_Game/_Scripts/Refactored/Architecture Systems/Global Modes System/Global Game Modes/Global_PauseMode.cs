@@ -15,6 +15,7 @@ public class Global_PauseMode: BaseState<EmptyContext>
         // - соответственно - при выключении паузы объекты должны будут продолжить выполнять активные состояния, которые были - без перехода в них!!!
         
         Root.Instance.PausableRegistry.EnterPauseMode();
+        Root.Instance.uiScreenSwitcher.SetActivePauseScreen(true);
     }
 
     public override void ExitState(EmptyContext context)
@@ -24,6 +25,7 @@ public class Global_PauseMode: BaseState<EmptyContext>
         // - меню паузы выключается
         // - у всех IPausable объектов вызывается ExitPauseMode()
         Root.Instance.PausableRegistry.ExitPauseMode();
+        Root.Instance.uiScreenSwitcher.SetActivePauseScreen(false);
     }
 
     public override void UpdateState(EmptyContext context)

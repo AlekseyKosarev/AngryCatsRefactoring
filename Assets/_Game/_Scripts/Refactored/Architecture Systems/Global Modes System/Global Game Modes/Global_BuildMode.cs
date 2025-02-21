@@ -20,7 +20,7 @@ public class Global_BuildMode: BaseState<EmptyContext>
         Root.Instance.BuildableRegistry.EnterBuildMode();
         // Root.Instance.PausableRegistry.EnterBuildMode();
         Root.Instance.PlayableRegistry.ExitPlayMode();
-        
+        Root.Instance.uiScreenSwitcher.SwitchToBuildScreen();
     }
 
     public override void ExitState(EmptyContext context)

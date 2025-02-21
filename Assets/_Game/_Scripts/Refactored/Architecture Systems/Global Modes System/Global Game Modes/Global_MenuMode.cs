@@ -10,6 +10,7 @@ public class Global_MenuMode: BaseState<EmptyContext>
         Root.Instance.Global_MenuMode = true;
         
         Root.Instance.inputModeToggle.GlobalMode_Enable();
+        Root.Instance.uiScreenSwitcher.SwitchToMenuScreen();
     }
 
     public override void ExitState(EmptyContext context)

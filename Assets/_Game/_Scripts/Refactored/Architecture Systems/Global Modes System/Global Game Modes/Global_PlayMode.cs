@@ -17,6 +17,7 @@ public class Global_PlayMode: BaseState<EmptyContext>
         // - спавнер включает режим игры у всех объектов
         Root.Instance.PlayableRegistry.EnterPlayMode();
         Root.Instance.BuildableRegistry.ExitBuildMode();
+        Root.Instance.uiScreenSwitcher.SwitchToGameScreen();
     }
 
     public override void ExitState(EmptyContext context)
