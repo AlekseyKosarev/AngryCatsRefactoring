@@ -22,10 +22,15 @@ public class Launcher_PlayMode: BaseState<Launcher_Context>
         // Логика обновления в режиме игры
         if (context.InputHandler.IsDragging)
         {
-            context.View.DrawTrajectory(context.InputHandler.StartPosition, context.InputHandler.EndPosition);
+            context.View.DrawRope(context.InputHandler.GetStartPoint(), context.InputHandler.CalculateEndPoint());
+
+            var velocity = context.PhysicsController.velocityLaunch;
+            var mass = context.PhysicsController.massProjectile;
+            context.View.DrawTrajectory(context.InputHandler.GetStartPoint(), context.InputHandler.GetDirection(), velocity, mass);
         }
         else
         {
+            context.View.ClearRope();
             context.View.ClearTrajectory();
         }
     }
