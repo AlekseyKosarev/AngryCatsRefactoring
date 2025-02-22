@@ -4,22 +4,29 @@ using UnityEngine;
 
 public class Launcher_Base : MonoBehaviour, IPausable, IBuildable, IPlayable
 {
+    public Transform pointOfLaunch;
+    
     private StateMachine<Launcher_Context> _states;
     
     private Launcher_Context _context;
     
     private Launcher_View _view;
-    private Launcher_PhysicsController _physicsController;
+    private Launcher_Physics _physics;
     private Launcher_InputHandler _inputHandler;
+    private Launcher_Magazine _magazine;
 
-    private void Start()
+    private void Init()
     {
         _view = GetComponent<Launcher_View>();
-        _physicsController = GetComponent<Launcher_PhysicsController>();
+        _physics = GetComponent<Launcher_Physics>();
         _inputHandler = GetComponent<Launcher_InputHandler>();
+        _magazine = GetComponent<Launcher_Magazine>();
         
-        _context = new Launcher_Context(_view, _physicsController, _inputHandler);
-        
+        _context = new Launcher_Context(_view, _physics, _inputHandler, _magazine, pointOfLaunch);
+    }
+    private void Start()
+    {
+        Init();
         _states = new StateMachineBuilder<Launcher_Context>()
             .AddState(new Launcher_BuildMode())
             .AddState(new Launcher_PauseMode())

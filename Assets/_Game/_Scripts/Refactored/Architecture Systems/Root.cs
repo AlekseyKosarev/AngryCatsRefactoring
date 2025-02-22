@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using _Game._Scripts.Copy;
 using UnityEngine;
 
@@ -16,6 +17,8 @@ public class Root: Singleton<Root>
     public GameInputSystem_Actions InputActions;
     public InputLogic inputLogic;
     public InputModeToggle inputModeToggle;
+    public AnyClickHandlerRegistry anyClickHandlerRegistry;
+
     
     //Registry systems
     public FORTESET_GameObject_Container gameObjectContainer;
@@ -69,5 +72,8 @@ public class Root: Singleton<Root>
         BuildableRegistry.AddRange(gameObjectContainer.GetIBuildableObjects());
         PlayableRegistry = new PlayableRegistry();
         PlayableRegistry.AddRange(gameObjectContainer.GetIPlayableObjects());
+        
+        anyClickHandlerRegistry = new AnyClickHandlerRegistry();
+        anyClickHandlerRegistry.AddRange(gameObjectContainer.GetIAnyClickHanblers());
     }
 }

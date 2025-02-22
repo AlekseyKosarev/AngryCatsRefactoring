@@ -1,31 +1,44 @@
+using UnityEngine;
+
 public class Launcher_PlayMode: BaseState<Launcher_Context>
 {
     public override void Init(Launcher_Context context)
     {
+        context.Magazine.ResetMagazine();//TODO чтобы делать рестарт правильно, нужно сбрасывать все иниты у стейт машин(ResetState();) 
     }
     public override void EnterState(Launcher_Context context)
     {
+        base.EnterState(context);
         Root.Instance.LAUNCHER_PlayMode = true;
-        context.InputHandler.Input_Enable(); // Включаем инпут
-        context.PhysicsController.ResumePhysics(); // Включаем физику
+        context.InputHandler.InputEnabled = true; // Включаем инпут
+        context.Physics.ResumePhysics(); // Включаем физику
         context.View.EnableEffects(); // Включаем визуальные эффекты
+        
+        context.InputHandler.OnLaunchStart += context.Magazine.Launch;
+        
+        // Debug.Log("LAUNCHER PlayMode enter");
     }
 
     public override void ExitState(Launcher_Context context)
     {
         Root.Instance.LAUNCHER_PlayMode = false;
-        
+        context.InputHandler.OnLaunchStart -= context.Magazine.Launch;
+        // Debug.Log("LAUNCHER PlayMode exit");
     }
 
     public override void UpdateState(Launcher_Context context)
     {
+        
+        
         // Логика обновления в режиме игры
         if (context.InputHandler.IsDragging)
         {
+            if (context.Magazine.canLaunch == false) return;
+            if (context.Magazine.launcherIsReady == false) return;
             context.View.DrawRope(context.InputHandler.GetStartPoint(), context.InputHandler.CalculateEndPoint());
 
-            var velocity = context.PhysicsController.velocityLaunch;
-            var mass = context.PhysicsController.massProjectile;
+            var velocity = context.Magazine.launchForce;
+            var mass = context.Magazine.GetMassProjectile();
             context.View.DrawTrajectory(context.InputHandler.GetStartPoint(), context.InputHandler.GetDirection(), velocity, mass);
         }
         else
@@ -33,5 +46,6 @@ public class Launcher_PlayMode: BaseState<Launcher_Context>
             context.View.ClearRope();
             context.View.ClearTrajectory();
         }
+        
     }
 }

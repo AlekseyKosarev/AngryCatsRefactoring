@@ -6,8 +6,8 @@ public class Launcher_BuildMode: BaseState<Launcher_Context>
     public override void EnterState(Launcher_Context context)
     {
         Root.Instance.LAUNCHER_BuildMode = true;
-        context.InputHandler.Input_Disable(); // Отключаем инпут
-        context.PhysicsController.PausePhysics(); // Отключаем физику
+        context.InputHandler.InputEnabled = false; // Отключаем инпут
+        context.Physics.PausePhysics(); // Отключаем физику
         context.View.DisableEffects(); // Отключаем визуальные эффекты
     }
 

@@ -12,7 +12,7 @@ public class Material_PauseMode: BaseState<Material_Context>
         Root.Instance.Material_PauseMode = true;
         
         context.View.StopActiveEffects();
-        context.Physics.Off_SaveVelocity();
+        context.Physics.OffWithSave();
     }
     public override void ExitState(Material_Context context)
     {

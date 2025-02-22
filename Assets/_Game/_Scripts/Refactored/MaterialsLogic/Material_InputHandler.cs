@@ -15,7 +15,6 @@ public class Material_InputHandler: MonoBehaviour, IDraggable
         _material = GetComponent<Material_Base>();
         _inputData = new InputData();
     }
-
     public void OnClickDown(Vector2 worldPointerPosition){}
 
     public void OnClickUp(Vector2 worldPointerPosition)

@@ -1,10 +1,12 @@
+using System;
 using UnityEngine;
 
 public class Launcher_InputHandler: MonoBehaviour, IDraggable
 {
     private Launcher_Base _launcherBase;
-    
-    private bool _inputEnabled = true;
+
+    public bool InputEnabled{ get; set; }
+    public event Action<Vector2> OnLaunchStart; 
     private bool _isDragging;
     
     private Vector2 _startPosition;
@@ -15,20 +17,16 @@ public class Launcher_InputHandler: MonoBehaviour, IDraggable
     
     public bool IsDragging => _isDragging;
 
-    public void Input_Enable()
+    private void Start()
     {
-        _inputEnabled = true;
-    }
-    public void Input_Disable()
-    {
-        _inputEnabled = false;
+        _launcherBase = GetComponent<Launcher_Base>();
     }
 
     public void OnClickDown(Vector2 worldPointerPosition)
     {
-        if (!_inputEnabled) return;
-        Debug.Log("LAUNCHER BeginDrag");
-        _startPosition = worldPointerPosition;
+        if (!InputEnabled) return;
+        // Debug.Log("LAUNCHER BeginDrag");
+        _startPosition = _launcherBase.pointOfLaunch.position;
         _isDragging = true;
     }
 
@@ -39,8 +37,8 @@ public class Launcher_InputHandler: MonoBehaviour, IDraggable
 
     public void OnDrag(Vector2 worldPointerPosition)
     {
-        if (!_inputEnabled) return;
-        Debug.Log("LAUNCHER OnDrag");
+        if (!InputEnabled) return;
+        // Debug.Log("LAUNCHER OnDrag");
         _endPosition = worldPointerPosition;
         
         CalculateDirection();
@@ -48,12 +46,13 @@ public class Launcher_InputHandler: MonoBehaviour, IDraggable
 
     public void OnEndDrag(Vector2 worldPointerPosition)
     {
-        if (!_inputEnabled) return;
-        Debug.Log("LAUNCHER EndDrag");
+        if (!InputEnabled) return;
+        // Debug.Log("LAUNCHER EndDrag");
         _endPosition = worldPointerPosition;
         _isDragging = false;
 
         CalculateDirection();
+        OnLaunchStart?.Invoke(-_direction);
     }
 
     private void CalculateDirection()
@@ -68,7 +67,7 @@ public class Launcher_InputHandler: MonoBehaviour, IDraggable
     public Vector2 CalculateEndPoint()
     {
         var endPoint = _startPosition + _direction * maxDistance/2f;
-        Debug.Log("LAUNCHER endPoint = " + endPoint + " direction = " + _direction);
+        // Debug.Log("LAUNCHER endPoint = " + endPoint + " direction = " + _direction);
         return endPoint;
     }
 

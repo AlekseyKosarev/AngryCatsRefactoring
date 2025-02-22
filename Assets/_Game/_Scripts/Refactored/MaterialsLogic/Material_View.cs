@@ -26,10 +26,10 @@ public class Material_View: MonoBehaviour
 
     public void StopActiveEffects()
     {
-        Debug.Log("StopActiveEffects");
+        // Debug.Log("StopActiveEffects");
     }
     public void ResumeActiveEffects()
     {
-        Debug.Log("ResumeActiveEffects");
+        // Debug.Log("ResumeActiveEffects");
     }
 }

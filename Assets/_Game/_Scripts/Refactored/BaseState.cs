@@ -19,4 +19,9 @@ public abstract class BaseState<T>: IState<T>
     public abstract void ExitState(T context);
 
     public abstract void UpdateState(T context);
+    
+    public void ResetState()
+    {
+        _isFirstEnter = true;
+    }
 }

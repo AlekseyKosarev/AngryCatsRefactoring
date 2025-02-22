@@ -14,7 +14,7 @@ public class Material_PlayMode: BaseState<Material_Context>
         //вот тут по контексту могу получить ссылку на все необходимые компоненты
         
         //включение физики
-        context.Physics.SetPlayMode();
+        context.Physics.On();
     }
 
     public override void ExitState(Material_Context context)

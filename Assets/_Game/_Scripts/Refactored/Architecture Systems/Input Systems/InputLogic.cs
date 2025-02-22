@@ -38,6 +38,9 @@ public class InputLogic: MonoBehaviour
     public void ClickTo(InputActionPhase clickPhase)
     {
         Vector2 screenPosition = GetMousePosition();
+
+        Root.Instance.anyClickHandlerRegistry.OnAnyClick(screenPosition, clickPhase);
+        
         if (TryRayToPoint(screenPosition, out RaycastHit2D hit))
         {
             IClickable clickable = hit.collider.GetComponent<IClickable>();

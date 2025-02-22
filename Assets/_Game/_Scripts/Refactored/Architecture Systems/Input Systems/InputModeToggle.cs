@@ -37,7 +37,6 @@ public class InputModeToggle: MonoBehaviour, IPausable, IBuildable, IPlayable
     
     public void PauseMode_Enable()
     {
-        Debug.Log("INPUT TO PAUSE MODE");
         _inputModes.SaveCurrentStatesToPrevious();
         _inputModes.DeactivateAllStates(inputActions);
         _inputModes.SwitchToState<Input_GlobalMode>(inputActions);//TODO someone will need add PAUSE mode later 
@@ -45,7 +44,6 @@ public class InputModeToggle: MonoBehaviour, IPausable, IBuildable, IPlayable
 
     public void PauseMode_Disable()
     {
-        Debug.Log("INPUT TO PREVIOUS MODE");
         _inputModes.ActivatePreviousStates(inputActions);
     }
 }

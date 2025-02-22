@@ -54,11 +54,6 @@ public class Material_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
         _states.SetStateActive<Material_PauseMode>(false, materialData);
         _states.ActivatePreviousStates(materialData);
     }
-
-    public void EnterPlayMode()
-    {
-        _states.SwitchToState<Material_PlayMode>(materialData);
-    }
     
     public void BuildMode_Enable()
     {
@@ -66,6 +61,7 @@ public class Material_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
     }
     public void BuildMode_Disable()
     {
+        // _states.DeactivateAllStates(materialData);
         _states.SetStateActive<Material_BuildMode>(false, materialData);//TODO лучше deactivate all states прокинуть и использовать
     }
 
@@ -76,6 +72,7 @@ public class Material_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
 
     public void PlayMode_Disable()
     {
+        // _states.DeactivateAllStates(materialData);
         _states.SetStateActive<Material_PlayMode>(false, materialData);//TODO лучше deactivate all states прокинуть и использовать
     }
 }
