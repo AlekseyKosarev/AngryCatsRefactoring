@@ -1,4 +1,3 @@
-using System;
 using StateMachine.StateMachineSystems;
 
 public class Projectile_PlayMode: BaseState<Projectile_Context>
@@ -7,20 +6,17 @@ public class Projectile_PlayMode: BaseState<Projectile_Context>
 
     public override void Init(Projectile_Context context)
     {
-        
         _states = new StateMachineBuilder<Projectile_Context>()
             .AddState(new InMagazineState())
             .AddState(new ReadyState())
             .AddState(new FlyState())
             .AddState(new DeadState())
             .Build();
-        
-        // SwitchToInMagazineState(context);
+        SwitchToInMagazineState(context);
     }
     public override void EnterState(Projectile_Context context)
     {
         base.EnterState(context);
-        SwitchToInMagazineState(context);
     }
     public override void ExitState(Projectile_Context context)
     {

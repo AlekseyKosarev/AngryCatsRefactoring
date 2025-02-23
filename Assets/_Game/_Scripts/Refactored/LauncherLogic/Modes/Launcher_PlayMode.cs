@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class Launcher_PlayMode: BaseState<Launcher_Context>
 {
+    private Action<Vector2> OnTryedLaunch; 
     public override void Init(Launcher_Context context)
     {
         //TODO чтобы делать рестарт правильно, нужно сбрасывать все иниты у стейт машин(ResetState();) 
@@ -14,7 +16,8 @@ public class Launcher_PlayMode: BaseState<Launcher_Context>
         context.Physics.ResumePhysics(); // Включаем физику
         context.View.EnableEffects(); // Включаем визуальные эффекты
         
-        context.InputHandler.OnLaunchStart += context.Magazine.Launch;
+        OnTryedLaunch = dir => TryLaunch(dir, context);
+        context.InputHandler.OnLaunchStart += OnTryedLaunch;
         // ResetState();
         // Debug.Log("LAUNCHER PlayMode enter");
     }
@@ -22,19 +25,17 @@ public class Launcher_PlayMode: BaseState<Launcher_Context>
     public override void ExitState(Launcher_Context context)
     {
         Root.Instance.LAUNCHER_PlayMode = false;
-        context.InputHandler.OnLaunchStart -= context.Magazine.Launch;
+        context.InputHandler.OnLaunchStart -= OnTryedLaunch;
         // Debug.Log("LAUNCHER PlayMode exit");
     }
 
     public override void UpdateState(Launcher_Context context)
     {
-        
-        
         // Логика обновления в режиме игры
         if (context.InputHandler.IsDragging)
         {
-            if (context.Magazine.launcherIsEmpty) return;
-            if (context.Magazine.launcherIsReady == false) return;
+            if (context.Magazine.CanShoot() == false) return;
+            Debug.Log("READY LAUNCHER");
             context.View.DrawRope(context.InputHandler.GetStartPoint(), context.InputHandler.CalculateEndPoint());
 
             var velocity = context.Magazine.launchForce;
@@ -46,6 +47,10 @@ public class Launcher_PlayMode: BaseState<Launcher_Context>
             context.View.ClearRope();
             context.View.ClearTrajectory();
         }
-        
+    }
+    private void TryLaunch(Vector2 dir, Launcher_Context context)
+    {
+        if (context.Magazine.CanShoot() == false) return;
+        context.Magazine.Launch(dir);
     }
 }

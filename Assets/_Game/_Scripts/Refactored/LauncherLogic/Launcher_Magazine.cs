@@ -7,6 +7,8 @@ public class Launcher_Magazine: MonoBehaviour
 {
     public List<Projectile_Launch> allProjectiles = new List<Projectile_Launch>();
     public float launchForce = 5f;
+    public float reloadDuration = 0.5f;
+    public Transform pointOfLaunch;
     
     private int currentProjectileIndex = 0;
     private Projectile_Launch currentProjectile;
@@ -36,7 +38,7 @@ public class Launcher_Magazine: MonoBehaviour
         launcherIsReady = false;
         currentProjectile = allProjectiles[currentProjectileIndex];
         currentProjectileIndex++;
-        currentProjectile.GoToLauncher(transform.position, () =>
+        currentProjectile.GoToLauncher(pointOfLaunch.position, reloadDuration, () =>
         {
             Debug.Log("Projectile reached launcher!");
             launcherIsReady = true;
@@ -50,10 +52,10 @@ public class Launcher_Magazine: MonoBehaviour
         launcherIsEmpty = false;
         currentProjectileIndex = 0;
         currentProjectile = null;
-        foreach (var projectile in allProjectiles)
-        {
-            projectile.Restart();
-        }
+        // foreach (var projectile in allProjectiles)
+        // {
+        //     projectile.Restart();
+        // }
     }
 
     public void ResetMagazine()
@@ -64,5 +66,9 @@ public class Launcher_Magazine: MonoBehaviour
     public float GetMassProjectile()
     {
         return currentProjectile.GetComponent<Rigidbody2D>().mass;
+    }
+    public bool CanShoot()
+    {
+        return !launcherIsEmpty && launcherIsReady;
     }
 }

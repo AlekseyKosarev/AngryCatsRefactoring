@@ -6,6 +6,7 @@ public class Projectile_Physics: PhysicsBase
     public Collider2D collider;
     public void Launch(Vector2 dir, float force)
     {
+        Debug.Log("Launch Projectile");
         Rigidbody.AddForce(dir * force, ForceMode2D.Impulse);
     }
 

@@ -47,6 +47,13 @@ public class Projectile_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
         _states.Update(_context);
     }
 
+    void RestartPlaying()
+    {
+        // Debug.Log("RestartPlaying Projectile");
+        var playMode = _states.GetStateFromRegistry<Projectile_PlayMode>() as BaseState<Projectile_Context>;
+        playMode?.ResetState();
+        _context.LaunchHandler.Restart();
+    }
     public void PauseMode_Enable()
     {
         _states.SaveCurrentStatesToPrevious();
@@ -61,6 +68,7 @@ public class Projectile_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
 
     public void BuildMode_Enable()
     {
+        RestartPlaying();
         _states.SwitchToState<Projectile_BuildMode>(_context);
     }
 
@@ -72,11 +80,13 @@ public class Projectile_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
 
     public void PlayMode_Enable()
     {
+        RestartPlaying();
         _states.SwitchToState<Projectile_PlayMode>(_context);
     }
 
     public void PlayMode_Disable()
     {
+        RestartPlaying();
         // _states.DeactivateAllStates(_context);
         _states.SetStateActive<Projectile_PlayMode>(false, _context);
     }

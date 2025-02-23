@@ -17,27 +17,29 @@ public class Projectile_Launch: MonoBehaviour
 
     public void Launch(Vector2 direction, float force)
     {
+        Debug.Log("Launch Projectile event");
         OnLaunch?.Invoke(direction, force);
     }
 
-    public void Restart()
+    public void Restart()//TODO переделать как-нибудь 
     {
-        Debug.Log("Restart Projectile");
+        // Debug.Log("Restart Projectile");
         transform.position = defaultPosition;
+        
         OnRestart?.Invoke();
         // вернуть снаряд в исходное положение
     }
 
-    public void GoToLauncher(Vector3 position, Action onComplete = null)
+    public void GoToLauncher(Vector3 position, float duration, Action onComplete = null)
     {
         // Выполняем анимацию прыжка к указанной позиции
-        transform.DOJump(position, jumpPower: 1f, numJumps: 1, duration: 0.5f)
+        transform.DOJump(position, jumpPower: 1f, numJumps: 1, duration: duration)
             .SetEase(Ease.OutQuad) // Плавное завершение анимации
             .OnComplete(() =>
             {
                 // Вызываем калбек, когда анимация завершена
-                onComplete?.Invoke();
                 OnReady?.Invoke();
+                onComplete?.Invoke();
             });
     }
 }
