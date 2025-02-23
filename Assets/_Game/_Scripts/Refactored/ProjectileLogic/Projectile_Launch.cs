@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using DG.Tweening.Core;
 using UnityEngine;
 
 public class Projectile_Launch: MonoBehaviour
@@ -9,6 +10,8 @@ public class Projectile_Launch: MonoBehaviour
     public event Action OnReady;
     
     private Vector2 defaultPosition;
+    
+    private Tween _tweenJump;
 
     private void Start()
     {
@@ -32,7 +35,7 @@ public class Projectile_Launch: MonoBehaviour
     public void GoToLauncher(Vector3 position, float duration, Action onComplete = null)
     {
         // Выполняем анимацию прыжка к указанной позиции
-        transform.DOJump(position, jumpPower: 1f, numJumps: 1, duration: duration)
+        _tweenJump = transform.DOJump(position, jumpPower: 1f, numJumps: 1, duration: duration)
             .SetEase(Ease.OutQuad) // Плавное завершение анимации
             .OnComplete(() =>
             {
@@ -40,5 +43,15 @@ public class Projectile_Launch: MonoBehaviour
                 OnReady?.Invoke();
                 onComplete?.Invoke();
             });
+    }
+
+    public void PauseTween()
+    {
+        _tweenJump.Pause();
+    }
+
+    public void ResumeTween()
+    {
+        _tweenJump.Play();
     }
 }

@@ -56,12 +56,14 @@ public class Projectile_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
     }
     public void PauseMode_Enable()
     {
+        launchHandler.PauseTween();
         _states.SaveCurrentStatesToPrevious();
         _states.SwitchToState<Projectile_PauseMode>(_context);
     }
 
     public void PauseMode_Disable()
     {
+        launchHandler.ResumeTween();
         _states.ActivatePreviousStates(_context);
         _states.SetStateActive<Projectile_PauseMode>(false, _context);
     }
