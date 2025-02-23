@@ -17,9 +17,14 @@ public class Projectile_PlayMode: BaseState<Projectile_Context>
     public override void EnterState(Projectile_Context context)
     {
         base.EnterState(context);
+        context.PlayModeStates = this;
+        _states.ActivatePreviousStates(context);
     }
     public override void ExitState(Projectile_Context context)
     {
+        _states.SaveCurrentStatesToPrevious();
+        context.PlayModeStates = this;
+        _states.DeactivateAllStates(context);
     }
 
     public override void UpdateState(Projectile_Context context)

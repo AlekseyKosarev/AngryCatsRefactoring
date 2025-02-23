@@ -12,7 +12,6 @@ public class InMagazineState : BaseState<Projectile_Context>
     public override void EnterState(Projectile_Context context)
     {
         context.View.SetProjectileSpriteDef();
-        Debug.Log("InMagazine Projectile");
         readyAction = () => context.PlayModeStates.SwitchToReadyState(context);
         context.LaunchHandler.OnReady += readyAction;
     }

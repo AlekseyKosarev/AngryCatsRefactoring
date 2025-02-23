@@ -6,13 +6,13 @@ public class FlyState: BaseState<Projectile_Context>
     float lifeTime = 2f;
     public override void Init(Projectile_Context context)
     {
-        
+        lifeTime = lifeTimeDef;
     }
 
     public override void EnterState(Projectile_Context context)
     {
         // Debug.Log("Fly Projectile");
-        lifeTime = lifeTimeDef;
+        context.Physics.On();
     }
     public override void ExitState(Projectile_Context context)
     {

@@ -35,7 +35,6 @@ public class Launcher_PlayMode: BaseState<Launcher_Context>
         if (context.InputHandler.IsDragging)
         {
             if (context.Magazine.CanShoot() == false) return;
-            Debug.Log("READY LAUNCHER");
             context.View.DrawRope(context.InputHandler.GetStartPoint(), context.InputHandler.CalculateEndPoint());
 
             var velocity = context.Magazine.launchForce;

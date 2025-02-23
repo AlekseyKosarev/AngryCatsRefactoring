@@ -17,7 +17,6 @@ public class Projectile_Launch: MonoBehaviour
 
     public void Launch(Vector2 direction, float force)
     {
-        Debug.Log("Launch Projectile event");
         OnLaunch?.Invoke(direction, force);
     }
 

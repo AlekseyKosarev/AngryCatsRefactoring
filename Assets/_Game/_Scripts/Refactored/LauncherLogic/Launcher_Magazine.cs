@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Launcher_Magazine: MonoBehaviour
 {
@@ -40,7 +38,6 @@ public class Launcher_Magazine: MonoBehaviour
         currentProjectileIndex++;
         currentProjectile.GoToLauncher(pointOfLaunch.position, reloadDuration, () =>
         {
-            Debug.Log("Projectile reached launcher!");
             launcherIsReady = true;
             // Здесь можно добавить дополнительные действия после завершения анимации
         });

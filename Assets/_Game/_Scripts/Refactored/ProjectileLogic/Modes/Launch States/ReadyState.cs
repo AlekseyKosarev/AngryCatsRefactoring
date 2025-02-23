@@ -27,13 +27,11 @@ public class ReadyState: BaseState<Projectile_Context>
     
     private void Launch(Vector2 dir, float force, Projectile_Context context)
     {
-        Debug.Log("Launch Projectile <--------");
         if(context.IsLaunched) return;
         
         context.IsLaunched = true;
-        context.Physics.On();
-        context.Physics.Launch(dir, force);
         
         context.PlayModeStates.SwitchToFlyState(context);
+        context.Physics.Launch(dir, force);
     }
 }
