@@ -28,15 +28,19 @@ public class Projectile_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
         
         _context = new Projectile_Context(rb, transform, view, inputHandler, physics, launchHandler);
     }
-    private void Start()
+
+    public void InitStateMachine()
     {
-        Init();
-        
         _states = new StateMachineBuilder<Projectile_Context>()
             .AddState(new Projectile_PlayMode())
             .AddState(new Projectile_BuildMode())
             .AddState(new Projectile_PauseMode())
             .Build();
+    }
+    private void Start()
+    {
+        Init();
+        InitStateMachine();
     }
     private void Update()
     {

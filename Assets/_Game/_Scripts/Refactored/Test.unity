@@ -4187,7 +4187,7 @@ MonoBehaviour:
   - {fileID: 450035592}
   - {fileID: 463246087}
   launchForce: 5
-  canLaunch: 0
+  launcherIsEmpty: 0
   launcherIsReady: 0
 --- !u!1 &1993854619
 GameObject:

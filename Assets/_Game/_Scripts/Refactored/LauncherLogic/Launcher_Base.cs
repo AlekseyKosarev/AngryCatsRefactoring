@@ -24,14 +24,25 @@ public class Launcher_Base : MonoBehaviour, IPausable, IBuildable, IPlayable
         
         _context = new Launcher_Context(_view, _physics, _inputHandler, _magazine, pointOfLaunch);
     }
-    private void Start()
+
+    private void InitStateMachine()
     {
-        Init();
         _states = new StateMachineBuilder<Launcher_Context>()
             .AddState(new Launcher_BuildMode())
             .AddState(new Launcher_PauseMode())
             .AddState(new Launcher_PlayMode())
             .Build();
+    }
+
+    // public void RestartStateMachine()
+    // {
+    //     _states.DeactivateAllStates(_context);
+    //     InitStateMachine();
+    // }
+    private void Start()
+    {
+        Init();
+        InitStateMachine();
     }
 
     private void Update()
@@ -63,11 +74,13 @@ public class Launcher_Base : MonoBehaviour, IPausable, IBuildable, IPlayable
 
     public void PlayMode_Enable()
     {
+        _context.Magazine.ResetMagazine();//TODO возможно плохое решение.... но работает именно так, как нужно!!!
         _states.SwitchToState<Launcher_PlayMode>(_context);
     }
 
     public void PlayMode_Disable()
     {
+        // RestartStateMachine();
         _states.SetStateActive<Launcher_PlayMode>(false, _context);
     }
 }

@@ -4,7 +4,7 @@ public class Launcher_PlayMode: BaseState<Launcher_Context>
 {
     public override void Init(Launcher_Context context)
     {
-        context.Magazine.ResetMagazine();//TODO чтобы делать рестарт правильно, нужно сбрасывать все иниты у стейт машин(ResetState();) 
+        //TODO чтобы делать рестарт правильно, нужно сбрасывать все иниты у стейт машин(ResetState();) 
     }
     public override void EnterState(Launcher_Context context)
     {
@@ -15,7 +15,7 @@ public class Launcher_PlayMode: BaseState<Launcher_Context>
         context.View.EnableEffects(); // Включаем визуальные эффекты
         
         context.InputHandler.OnLaunchStart += context.Magazine.Launch;
-        
+        // ResetState();
         // Debug.Log("LAUNCHER PlayMode enter");
     }
 
@@ -33,7 +33,7 @@ public class Launcher_PlayMode: BaseState<Launcher_Context>
         // Логика обновления в режиме игры
         if (context.InputHandler.IsDragging)
         {
-            if (context.Magazine.canLaunch == false) return;
+            if (context.Magazine.launcherIsEmpty) return;
             if (context.Magazine.launcherIsReady == false) return;
             context.View.DrawRope(context.InputHandler.GetStartPoint(), context.InputHandler.CalculateEndPoint());
 

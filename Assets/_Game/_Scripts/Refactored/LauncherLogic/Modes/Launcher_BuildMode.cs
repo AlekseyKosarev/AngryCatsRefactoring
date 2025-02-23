@@ -5,6 +5,7 @@ public class Launcher_BuildMode: BaseState<Launcher_Context>
     }
     public override void EnterState(Launcher_Context context)
     {
+        context.Magazine.ResetProjectiles();
         Root.Instance.LAUNCHER_BuildMode = true;
         context.InputHandler.InputEnabled = false; // Отключаем инпут
         context.Physics.PausePhysics(); // Отключаем физику

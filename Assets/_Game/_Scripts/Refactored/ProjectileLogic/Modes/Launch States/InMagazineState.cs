@@ -6,6 +6,7 @@ public class InMagazineState : BaseState<Projectile_Context>
     private Action readyAction;
     public override void Init(Projectile_Context context)
     {
+        
     }
 
     public override void EnterState(Projectile_Context context)
