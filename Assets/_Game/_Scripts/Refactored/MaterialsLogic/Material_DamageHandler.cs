@@ -3,17 +3,19 @@ using UnityEngine;
 
 public class Material_DamageHandler: MonoBehaviour, IDamageable
 {
-    public event Action<int> OnTryTakeDamage;
+    public event Action<float> OnTryTakeDamage;
     public event Action OnDead;
     
     public float hpMax;
     private float currentHp;
-    public void TryTakeDamage(int damage)
+    public void TryTakeDamage(float damage)
     {
-        OnTryTakeDamage?.Invoke(damage);
+        damage *= Root.Instance.DamageSettings.damageModificator;
+        if(damage >= Root.Instance.DamageSettings.minFixDamage)
+            OnTryTakeDamage?.Invoke(damage);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHp -= damage;
         if (currentHp <= 0)

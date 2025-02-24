@@ -17,7 +17,6 @@ public class Projectile_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
     private Projectile_View view;
     private Projectile_InputHandler inputHandler;
     private Projectile_Launch launchHandler;
-    
     public void Init()
     {
         rb = GetComponent<Rigidbody2D>();

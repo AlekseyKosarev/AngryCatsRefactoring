@@ -8,9 +8,14 @@ public abstract class PhysicsBase: MonoBehaviour
     private float _savedAngularVelocity;
     private float _savedRotation;
 
+    public virtual void Init()
+    {
+        
+    }
     private void Start()
     {
         Rigidbody = GetComponent<Rigidbody2D>();
+        Init();
     }
 
     public void OffClear()

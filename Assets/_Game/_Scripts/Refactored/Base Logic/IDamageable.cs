@@ -2,6 +2,6 @@ using System;
 
 public interface IDamageable
 {
-    public event Action<int> OnTryTakeDamage;  
-    public void TryTakeDamage(int damage);
+    public event Action<float> OnTryTakeDamage;  
+    public void TryTakeDamage(float damage);
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Material_PlayMode: BaseState<Material_Context>
 {
-    private Action<int> OnTakeDamage;
+    private Action<float> OnTakeDamage;
     private Action OnDead;
     public override void Init(Material_Context context)
     {
@@ -40,14 +40,14 @@ public class Material_PlayMode: BaseState<Material_Context>
         //ничего
     }
 
-    private void TakeDamage(int damage, Material_Context context)
+    private void TakeDamage(float damage, Material_Context context)
     {
         
         context.DamageHandler.TakeDamage(damage);
         
         var countPart = context.View.GetCountSpriteParts();
         var currentPart = context.DamageHandler.GetCurrentPart(countPart);
-        Debug.Log("Take dmg = " + damage + " currentPart = " + currentPart);
+        // Debug.Log("Take dmg = " + damage + " currentPart = " + currentPart);
         context.View.SetSpritePartByIndex(currentPart);
     }
 

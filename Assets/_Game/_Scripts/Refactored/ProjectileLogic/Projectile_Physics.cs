@@ -5,10 +5,11 @@ public class Projectile_Physics: PhysicsBase
 {
     //метод launch, который выпускает снаряд
     public Collider2D collider;
-    public event Action<IDamageable> OnTryDealDamage;
+    // public float savedCurrentForce;
+    
+    // public event Action<IDamageable> OnTryDealDamage;
     public void Launch(Vector2 dir, float force)
     {
-        Debug.Log("Launch Projectile");
         Rigidbody.AddForce(dir * force, ForceMode2D.Impulse);
     }
 
@@ -23,15 +24,15 @@ public class Projectile_Physics: PhysicsBase
 
     public void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.TryGetComponent(out IDamageable damageable))
-        {
-            OnTryDealDamage?.Invoke(damageable);
-        }
+        // if (other.gameObject.TryGetComponent(out IDamageable damageable))
+        // {
+        //     savedCurrentForce = other.relativeVelocity.SqrMagnitude();
+        //     OnTryDealDamage?.Invoke(damageable);
+        // }
     }
-
-    public float GetVelocityMagnitute()
-    {
-        var force = Rigidbody.linearVelocity.SqrMagnitude();
-        return force;
-    }
+    // public float GetVelocityMagnitute()
+    // {
+    //     var force = savedCurrentForce * Rigidbody.mass;
+    //     return force;
+    // }
 }

@@ -29,6 +29,8 @@ public class Root: Singleton<Root>
     //UI
     public UIScreenSwitcher uiScreenSwitcher;
     
+    //Damage system
+    public DamageSettings DamageSettings;
     //ACTIVE STATES
     
     //GLOBAL
