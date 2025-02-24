@@ -17,10 +17,13 @@ public struct Material_Context
     public Material_InputHandler InputHandler;
     public InputData InputData;
     
+    //Damage
+    public Material_DamageHandler DamageHandler;
+    
     //также можно указать, откуда включилось состояние - mode (симуляция, строительство)
     
     public MaterialMode Mode;
-    public Material_Context(Rigidbody2D rb, Transform transform, Material_View view, Material_InputHandler inputHandler, Material_Physics physics)
+    public Material_Context(Rigidbody2D rb, Transform transform, Material_View view, Material_InputHandler inputHandler, Material_Physics physics, Material_DamageHandler damageHandler)
     {
         //need
         Rb = rb;
@@ -28,6 +31,7 @@ public struct Material_Context
         Physics = physics;
         View = view;
         InputHandler = inputHandler;
+        DamageHandler = damageHandler;
         //no need
         Mode = MaterialMode.None;
         InputData = new InputData();

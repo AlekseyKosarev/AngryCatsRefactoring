@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class FlyState: BaseState<Projectile_Context>
 {
     float lifeTimeDef = 2f;
     float lifeTime = 2f;
+
+    private Action<IDamageable> OnDealDamage; 
     public override void Init(Projectile_Context context)
     {
         lifeTime = lifeTimeDef;
@@ -13,9 +16,16 @@ public class FlyState: BaseState<Projectile_Context>
     {
         // Debug.Log("Fly Projectile");
         context.Physics.On();
+        
+        //sub on deal damage event
+
+        OnDealDamage = damageable => DealDamage(damageable, context);
+        context.Physics.OnTryDealDamage += OnDealDamage;
     }
     public override void ExitState(Projectile_Context context)
     {
+        //unsub on deal damage event
+        context.Physics.OnTryDealDamage -= OnDealDamage;
     }
 
     public override void UpdateState(Projectile_Context context)
@@ -44,6 +54,13 @@ public class FlyState: BaseState<Projectile_Context>
         //недостатки
         //нужно писать много однотипного кода - view и тд для каждой способности
         //
+    }
+    private void DealDamage(IDamageable target, Projectile_Context context)
+    {
+        var dmg = (int)context.Physics.GetVelocityMagnitute();
+        Debug.Log(dmg);
+        target.TryTakeDamage(dmg);
+        //this run only when the projectile hits a target
     }
 
     void Dead(Projectile_Context context)

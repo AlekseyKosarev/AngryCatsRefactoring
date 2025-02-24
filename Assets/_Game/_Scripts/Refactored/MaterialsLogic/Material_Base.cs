@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Material_Physics))]
 [RequireComponent(typeof(Material_View))]
 [RequireComponent(typeof(Material_InputHandler))]
+[RequireComponent(typeof(Material_DamageHandler))]
 public class Material_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
 {
     private StateMachine<Material_Context> _states;
@@ -15,13 +16,16 @@ public class Material_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
     private Material_Physics physics;
     private Material_View view;
     private Material_InputHandler inputHandler;
+    private Material_DamageHandler damageHandler;
     public void Init()
     {
         rb = GetComponent<Rigidbody2D>();
         physics = GetComponent<Material_Physics>();
         view = GetComponent<Material_View>();
         inputHandler = GetComponent<Material_InputHandler>();
-        materialData = new Material_Context(rb, transform, view, inputHandler, physics);
+        damageHandler = GetComponent<Material_DamageHandler>();
+        
+        materialData = new Material_Context(rb, transform, view, inputHandler, physics, damageHandler);
     }
 
     private void Start()

@@ -1,15 +1,40 @@
+using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class Material_View: MonoBehaviour
 {
-    public SpriteRenderer spriteRenderer;
-    public Color selectedColor;
-    public Color defaultColor;
+    [SerializeField] private List<Sprite> materialParts;
     
-    // public void SetMaterial(BaseMaterial material)
-    // {
-    //     spriteRenderer.sprite = material.sprite;
-    // }
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Color selectedColor;
+    [SerializeField] private Color defaultColor;
+
+    private int currentSpritePart;
+
+    public void DeadView()
+    {
+        StopActiveEffects();
+        spriteRenderer.DOFade( 0f, 0.2f);
+    }
+    public void SetDefaultSpritePart()
+    {
+        SetSpritePartByIndex(0);
+    }
+    public void SetSpritePartByIndex(int indexPart)
+    {
+        if (materialParts.Count <= indexPart)
+        {
+            Debug.LogError(indexPart);
+            return;
+        }
+        spriteRenderer.sprite = materialParts[indexPart];
+    }
+
+    public int GetCountSpriteParts()
+    {
+        return materialParts.Count;
+    }
 
     public void SetColor(Color color)
     {
