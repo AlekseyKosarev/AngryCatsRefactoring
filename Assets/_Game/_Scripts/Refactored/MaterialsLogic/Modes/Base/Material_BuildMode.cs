@@ -15,7 +15,7 @@ public class Material_BuildMode: BaseState<Material_Context>
     {
         Root.Instance.Material_BuildMode = true;
         // context.Rb.bodyType = RigidbodyType2D.Kinematic;
-        context.Physics.OffClear();
+        context.Physics.OffRigidbodyNoSave();
         context.InputHandler.InputEnabled = true;
     }
 
@@ -24,6 +24,7 @@ public class Material_BuildMode: BaseState<Material_Context>
         Root.Instance.Material_BuildMode = false;
         
         context.InputHandler.InputEnabled = false;
+        context.Physics.SaveTransform();
     }
 
     public override void UpdateState(Material_Context context)

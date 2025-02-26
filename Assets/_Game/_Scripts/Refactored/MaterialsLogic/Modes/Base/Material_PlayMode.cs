@@ -18,7 +18,7 @@ public class Material_PlayMode: BaseState<Material_Context>
         //вот тут по контексту могу получить ссылку на все необходимые компоненты
         
         //включение физики
-        context.Physics.On();
+        context.Physics.OnRigidBody();
         OnTakeDamage = dmg => TakeDamage(dmg, context);
         OnDead = () => Dead(context);
         
@@ -54,6 +54,7 @@ public class Material_PlayMode: BaseState<Material_Context>
     private void Dead(Material_Context context)
     {
         context.View.DeadView();
-        context.Physics.OffClear();
+        context.Physics.OffRigidbodyNoSave();
+        context.Physics.ColliderSetActive(false);
     }
 }

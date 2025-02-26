@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 
 public class Projectile_Physics: PhysicsBase
 {
     //метод launch, который выпускает снаряд
-    public Collider2D collider;
+    // public Collider2D collider;
     // public float savedCurrentForce;
     
     // public event Action<IDamageable> OnTryDealDamage;
@@ -13,23 +12,14 @@ public class Projectile_Physics: PhysicsBase
         Rigidbody.AddForce(dir * force, ForceMode2D.Impulse);
     }
 
-    public void OffCollider()
-    {
-        collider.enabled = false;
-    }
-    public void OnCollider()
-    {
-        collider.enabled = true;
-    }
-
-    public void OnCollisionEnter2D(Collision2D other)
-    {
-        // if (other.gameObject.TryGetComponent(out IDamageable damageable))
-        // {
-        //     savedCurrentForce = other.relativeVelocity.SqrMagnitude();
-        //     OnTryDealDamage?.Invoke(damageable);
-        // }
-    }
+    // public void OnCollisionEnter2D(Collision2D other)
+    // {
+    //     // if (other.gameObject.TryGetComponent(out IDamageable damageable))
+    //     // {
+    //     //     savedCurrentForce = other.relativeVelocity.SqrMagnitude();
+    //     //     OnTryDealDamage?.Invoke(damageable);
+    //     // }
+    // }
     // public float GetVelocityMagnitute()
     // {
     //     var force = savedCurrentForce * Rigidbody.mass;

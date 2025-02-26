@@ -14,7 +14,7 @@ public class FlyState: BaseState<Projectile_Context>
     {
         base.EnterState(context);
         // Debug.Log("Fly Projectile");
-        context.Physics.On();
+        context.Physics.OnRigidBody();
         
         //sub on deal damage event
 

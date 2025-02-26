@@ -5,7 +5,7 @@ public class Projectile_BuildMode: BaseState<Projectile_Context>
     }
     public override void EnterState(Projectile_Context context)
     {
-        context.Physics.OffClear();
+        context.Physics.OffRigidbodyNoSave();
         context.View.SetProjectileSpriteDef();
     }
     public override void ExitState(Projectile_Context context)

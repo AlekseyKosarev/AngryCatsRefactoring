@@ -11,13 +11,13 @@ public class ReadyState: BaseState<Projectile_Context>
     public override void EnterState(Projectile_Context context)
     {
         // Debug.Log("Ready Projectile");
-        context.Physics.OffCollider();
+        context.Physics.ColliderSetActive(false);
         _launchHandler = (dir, force) => Launch(dir, force, context);
         context.LaunchHandler.OnLaunch += _launchHandler;
     }
     public override void ExitState(Projectile_Context context)
     {
-        context.Physics.OnCollider();
+        context.Physics.ColliderSetActive(true);
         context.LaunchHandler.OnLaunch -= _launchHandler;
     }
 

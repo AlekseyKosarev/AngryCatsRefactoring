@@ -8,6 +8,11 @@ public class Material_DamageHandler: MonoBehaviour, IDamageable
     
     public float hpMax;
     private float currentHp;
+
+    public void SetDefaultHp()
+    {
+        currentHp = hpMax;
+    }
     public void TryTakeDamage(float damage)
     {
         damage *= Root.Instance.DamageSettings.damageModificator;
@@ -37,13 +42,8 @@ public class Material_DamageHandler: MonoBehaviour, IDamageable
         return (int)MathF.Floor(res);
     }
 
-    public void ResetHp()
-    {
-        currentHp = hpMax;
-    }
-
     private void Start()
     {
-        ResetHp();
+        SetDefaultHp();
     }
 }

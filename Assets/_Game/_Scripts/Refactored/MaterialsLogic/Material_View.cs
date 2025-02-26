@@ -12,6 +12,11 @@ public class Material_View: MonoBehaviour
 
     private int currentSpritePart;
 
+    public void SetDefaultView()
+    {
+        SetDefaultColor();
+        SetDefaultSpritePart();
+    }
     public void DeadView()
     {
         StopActiveEffects();
@@ -25,7 +30,7 @@ public class Material_View: MonoBehaviour
     {
         if (materialParts.Count <= indexPart)
         {
-            Debug.LogError(indexPart);
+            //Debug.LogError(indexPart);
             return;
         }
         spriteRenderer.sprite = materialParts[indexPart];

@@ -17,4 +17,6 @@ public class Material_Physics: PhysicsBase
         _damageableHandler.TryTakeDamage((int)damage);
         // Debug.Log(gameObject.name + " has " + damage);
     }
+
+
 }

@@ -5,7 +5,7 @@ public class Projectile_PauseMode: BaseState<Projectile_Context>
     }
     public override void EnterState(Projectile_Context context)
     {
-        context.Physics.OffWithSave();
+        context.Physics.OffRigidbodyWithSave();
     }
     public override void ExitState(Projectile_Context context)
     {

@@ -43,6 +43,14 @@ public class Material_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
         _states.Update(materialData);
     }
 
+    public void RestartData()
+    {
+        materialData.Physics.SetDefaultPhysics();
+        materialData.Physics.LoadTransform();
+        materialData.DamageHandler.SetDefaultHp();
+        materialData.View.SetDefaultView();
+    }
+
     public void SetInputData(InputData inputData)
     {
         InputData input = inputData;
@@ -61,6 +69,7 @@ public class Material_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
     
     public void BuildMode_Enable()
     {
+        RestartData();
         _states.SwitchToState<Material_BuildMode>(materialData);
     }
     public void BuildMode_Disable()
@@ -71,6 +80,7 @@ public class Material_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
 
     public void PlayMode_Enable()
     {
+        RestartData();
         _states.SwitchToState<Material_PlayMode>(materialData);
     }
 
