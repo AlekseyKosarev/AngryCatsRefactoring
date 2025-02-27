@@ -26,6 +26,7 @@ public class Material_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
         damageHandler = GetComponent<Material_DamageHandler>();
         
         materialData = new Material_Context(rb, transform, view, inputHandler, physics, damageHandler);
+        Root.Instance.LevelData.Add(gameObject);
     }
 
     private void Start()

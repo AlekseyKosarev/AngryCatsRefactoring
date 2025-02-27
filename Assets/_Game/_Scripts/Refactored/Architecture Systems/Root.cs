@@ -18,7 +18,6 @@ public class Root: Singleton<Root>
     public InputLogic inputLogic;
     public InputModeToggle inputModeToggle;
     public AnyClickHandlerRegistry anyClickHandlerRegistry;
-
     
     //Registry systems
     public FORTESET_GameObject_Container gameObjectContainer;
@@ -31,6 +30,9 @@ public class Root: Singleton<Root>
     
     //Damage system
     public DamageSettings DamageSettings;
+    
+    //Level system
+    public LevelData LevelData;
     //ACTIVE STATES
     
     //GLOBAL
@@ -61,11 +63,12 @@ public class Root: Singleton<Root>
     {
         mainCamera = Camera.main;
         InputActions = new GameInputSystem_Actions();
-        
         inputModeToggle.Init();
         
         globalModesToggle = new GlobalModesToggle();
         globalModesToggle.ActivateMenuMode();//TODO refactor later maybe
+
+        LevelData = new LevelData();
         
         //Init Registry
         PausableRegistry = new PausableRegistry();

@@ -36,7 +36,7 @@ public class Material_InputHandler: MonoBehaviour, IDraggable
     public void OnDrag(Vector2 worldPointerPosition)
     {
         if (!InputEnabled) return;
-
+        
         var dir = new Vector3(worldPointerPosition.x, worldPointerPosition.y, 0);
         _inputData.Direction = dir;
         _inputData.MoveType = MoveType.Drag;
