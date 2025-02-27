@@ -4,19 +4,35 @@ using UnityEngine;
 public class LevelData
 {
     private List<GameObject> _objectsOnLevel = new();
-    public void Add(GameObject objectsOnLevel) 
+    private Dictionary<(MaterialType, ShapeType), GameObject> allItems = new();
+    
+    public void Init() => GetAllDataFromResources();
+    public void AddObjectOnLevel(GameObject objectsOnLevel) 
     {
         _objectsOnLevel.Add(objectsOnLevel);
-        Print();
     }
-    public void Remove(GameObject objectsOnLevel) => _objectsOnLevel.Remove(objectsOnLevel);
-    public void Clear() => _objectsOnLevel.Clear();
-
-    public void Print()
+    public void RemoveObjectOnLevel(GameObject objectsOnLevel) => _objectsOnLevel.Remove(objectsOnLevel);
+    public void ClearLevel() => _objectsOnLevel.Clear();
+    
+    public void GetAllDataFromResources()
     {
-        foreach (var obj in _objectsOnLevel)
+        ItemDataSo[] scriptableObjects = Resources.LoadAll<ItemDataSo>($"Assets/_Game/Prefabs/Materials/Resources");
+
+        foreach (var so in scriptableObjects)
         {
-            Debug.Log(obj.name);
+            allItems.Add((so.MaterialType, so.ShapeType), so.Prefab);
+            Debug.Log("Loaded ScriptableObject: " + so.name);
         }
     }
+    public GameObject GetPrefab(MaterialType materialType, ShapeType shapeType) => allItems[(materialType, shapeType)];
+    // public void LoadPrefabs()
+    // {
+    //     // Загружаем все префабы из папки Resources
+    //     GameObject[] prefabs = Resources.LoadAll<GameObject>($"Assets/_Game/Prefabs/Materials/Resources");
+    //
+    //     foreach (var prefab in prefabs)
+    //     {
+    //         Debug.Log("Loaded Prefab: " + prefab.name);
+    //     }
+    // }
 }

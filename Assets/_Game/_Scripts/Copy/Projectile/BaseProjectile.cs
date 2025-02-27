@@ -19,7 +19,7 @@ namespace _Game._Scripts.Copy.Projectile
         {
             _rb = GetComponent<Rigidbody2D>();
             _rb.mass = mass;
-            _rb.isKinematic = true;
+            // _rb.isKinematic = true;
         
             _col = GetComponent<CircleCollider2D>();
             _col.enabled = false;
@@ -40,7 +40,7 @@ namespace _Game._Scripts.Copy.Projectile
 
         public void Launch(Vector2 dir, float velocity)
         {
-            _rb.isKinematic = false;
+            // _rb.isKinematic = false;
             _col.enabled = true;
         
             _rb.AddForce(dir * velocity, ForceMode2D.Impulse);

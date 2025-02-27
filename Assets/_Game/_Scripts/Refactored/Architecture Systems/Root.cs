@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using _Game._Scripts.Copy;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Root: Singleton<Root>
 {
@@ -33,6 +34,7 @@ public class Root: Singleton<Root>
     
     //Level system
     public LevelData LevelData;
+    public LevelBuilder levelBuilder;
     //ACTIVE STATES
     
     //GLOBAL
@@ -67,8 +69,11 @@ public class Root: Singleton<Root>
         
         globalModesToggle = new GlobalModesToggle();
         globalModesToggle.ActivateMenuMode();//TODO refactor later maybe
-
+        
+        //Init Level System
         LevelData = new LevelData();
+        LevelData.Init();
+        levelBuilder.levelData = LevelData;
         
         //Init Registry
         PausableRegistry = new PausableRegistry();

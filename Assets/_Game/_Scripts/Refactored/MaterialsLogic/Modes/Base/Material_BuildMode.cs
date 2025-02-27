@@ -4,7 +4,6 @@ using UnityEngine;
 public class Material_BuildMode: BaseState<Material_Context>
 {
     // private StateMachine<MaterialContext> _statesInBuildMode;
-    private bool _selected = false;
     
     public override void Init(Material_Context context)
     {
@@ -24,6 +23,7 @@ public class Material_BuildMode: BaseState<Material_Context>
         Root.Instance.Material_BuildMode = false;
         
         context.InputHandler.InputEnabled = false;
+        
         context.Physics.SaveTransform();
     }
 
@@ -49,14 +49,12 @@ public class Material_BuildMode: BaseState<Material_Context>
     
     private void Selected(Material_Context context)
     {
-        _selected = true;
         context.View.SetSelectedColor();
         
         // _statesInBuildMode.SetStateActive<CanMoved>(true, context);
     }
     private void Deselected(Material_Context context)
     {
-        _selected = false;
         context.View.SetDefaultColor();
         // _statesInBuildMode.SetStateActive<CanMoved>(false, context);
     }

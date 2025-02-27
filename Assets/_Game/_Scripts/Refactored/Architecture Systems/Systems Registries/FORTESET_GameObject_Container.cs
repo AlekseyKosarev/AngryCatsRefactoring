@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class FORTESET_GameObject_Container: MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class FORTESET_GameObject_Container: MonoBehaviour
     private void Init()
     {   
         if(isInit) return;
-        gameObjects = FindObjectsOfType<GameObject>(true).ToList();
+        gameObjects = FindObjectsByType<GameObject>(FindObjectsSortMode.None).ToList();
 
         isInit = true;
     }

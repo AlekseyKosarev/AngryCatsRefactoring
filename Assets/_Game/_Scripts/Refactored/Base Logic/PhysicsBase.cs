@@ -8,15 +8,10 @@ public abstract class PhysicsBase: MonoBehaviour
     //Velocity
     private Vector2 _savedVelocity;
     private float _savedAngularVelocity;
-    // private float _savedRotation;
     //Position
     private Vector3 savedPosition;
     private Quaternion savedRotation;
     public virtual void Init()
-    {
-        
-    }
-    private void Start()
     {
         try
         {
@@ -27,6 +22,10 @@ public abstract class PhysicsBase: MonoBehaviour
         {
             Debug.LogError(e.Message);
         }
+    }
+    private void Start()
+    {
+        
         Init();
     }
     public void ColliderSetActive(bool value)
@@ -60,28 +59,24 @@ public abstract class PhysicsBase: MonoBehaviour
     {
         _savedVelocity = Rigidbody.linearVelocity;
         _savedAngularVelocity = Rigidbody.angularVelocity;
-        // _savedRotation = Rigidbody.rotation;
         ClearVelocity();
     }
     private void LoadVelocity()
     {
         Rigidbody.linearVelocity = _savedVelocity;
         Rigidbody.angularVelocity = _savedAngularVelocity;
-        // Rigidbody.rotation = _savedRotation;
         ClearSavedVelocity();
     }
     private void ClearVelocity()
     {
         Rigidbody.linearVelocity = Vector2.zero;
         Rigidbody.angularVelocity = 0f;
-        // Rigidbody.rotation = 0f;
     }
 
     private void ClearSavedVelocity()
     {
         _savedVelocity = Vector2.zero;
         _savedAngularVelocity = 0f;
-        // _savedRotation = 0f;
     }
     public void SaveTransform()
     {
@@ -92,5 +87,9 @@ public abstract class PhysicsBase: MonoBehaviour
     {
         transform.position = savedPosition;
         transform.rotation = savedRotation;
+    }
+    public void SetRotation(float angle)
+    {
+        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 }

@@ -1,0 +1,27 @@
+using UnityEngine;
+
+public class LevelBuilder : MonoBehaviour
+{
+    public Transform parentEmptyObject;
+
+    [HideInInspector] public LevelData levelData;
+
+    public void SpawnObjectToLevel(MaterialType materialType, ShapeType shapeType, Vector3 position)
+    {
+        var prefabItem = levelData.GetPrefab(materialType, shapeType);
+        SpawnObjectToLevel(prefabItem, position);
+    }
+
+    public void SpawnObjectToLevel(GameObject prefabItem, Vector3 position)
+    {
+        var itemObject = Instantiate(prefabItem, position, prefabItem.transform.rotation, parentEmptyObject);
+
+        // levelData.AddObjectOnLevel(itemObject);
+
+        Root.Instance.BuildableRegistry.Add(itemObject.GetComponent<IBuildable>());
+        Root.Instance.PlayableRegistry.Add(itemObject.GetComponent<IPlayable>());
+        Root.Instance.PausableRegistry.Add(itemObject.GetComponent<IPausable>());
+        
+        itemObject.GetComponent<Material_Base>().SpawnFromBuilder();
+    }
+}

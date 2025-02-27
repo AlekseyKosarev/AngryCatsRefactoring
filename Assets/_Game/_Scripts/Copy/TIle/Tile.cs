@@ -17,7 +17,7 @@ namespace _Game._Scripts.Copy.TIle
 
         private Tween _rotateTween;
 
-        private bool _isDrag;
+        // private bool _isDrag;
 
         private BoxCollider2D _boxColl;
         private CircleCollider2D _cirColl;
@@ -156,7 +156,7 @@ namespace _Game._Scripts.Copy.TIle
         {
             if(_simulated) return;
             // TileMoveController.Instance.SetSelectedTile(this.gameObject);
-            _isDrag = false;
+            // _isDrag = false;
         }
 
         // public void OnDrag(PointerEventData eventData)

@@ -17,8 +17,12 @@ public class Material_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
     private Material_View view;
     private Material_InputHandler inputHandler;
     private Material_DamageHandler damageHandler;
+    
+    private bool _isInit = false;
     public void Init()
     {
+        if(_isInit) return;
+        
         rb = GetComponent<Rigidbody2D>();
         physics = GetComponent<Material_Physics>();
         view = GetComponent<Material_View>();
@@ -26,24 +30,36 @@ public class Material_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
         damageHandler = GetComponent<Material_DamageHandler>();
         
         materialData = new Material_Context(rb, transform, view, inputHandler, physics, damageHandler);
-        Root.Instance.LevelData.Add(gameObject);
-    }
-
-    private void Start()
-    {
-        Init();
+        Root.Instance.LevelData.AddObjectOnLevel(gameObject);
+        
         _states = new StateMachineBuilder<Material_Context>()
             .AddState(new Material_PlayMode())
             .AddState(new Material_BuildMode())
             .AddState(new Material_PauseMode())
             .Build();
+        
+        materialData.Physics.SaveTransform();
+        _isInit = true;
+    }
+
+    private void Start()
+    {
+        Init();
+        Debug.Log("Start Tile");
+    }
+    public void SpawnFromBuilder()
+    {
+        Init();
+        materialData.Physics.Init();
+        materialData.Physics.SaveTransform();
+        BuildMode_Enable();
     }
 
     private void Update()
     {
         _states.Update(materialData);
     }
-
+    
     public void RestartData()
     {
         materialData.Physics.SetDefaultPhysics();
