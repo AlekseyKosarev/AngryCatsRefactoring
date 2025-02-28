@@ -54,11 +54,9 @@ public class Material_InputHandler: MonoBehaviour, IDraggable, IAnyClickHanbler
         _inputData.MoveType = MoveType.None;
     }
     
-    private float _initialAngle;
     private bool _isRotating;
     private float _previousAngle;
     private float _accumulatedAngle;
-
     public void AnyClick(Vector2 worldPointerPosition, InputActionPhase clickPhase)
     {
         if (!InputEnabled) return;
@@ -66,18 +64,21 @@ public class Material_InputHandler: MonoBehaviour, IDraggable, IAnyClickHanbler
         if (clickPhase == InputActionPhase.Started)
         {
             Vector2 direction = worldPointerPosition - (Vector2)transform.position;
-            _initialAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            _previousAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        
+            // Приводим накопленный угол в диапазон 0-360
+            _accumulatedAngle = _material.transform.localRotation.eulerAngles.z;//todo something
+            if(_accumulatedAngle < 0) _accumulatedAngle += 360;
+        
             _isRotating = true;
-            _previousAngle = _initialAngle;
-            // _accumulatedAngle = 0f;
-            // _inputData.RotateAngle = 0f;
             _inputData.RotateDelta = 0f;
         }
 
         if (clickPhase == InputActionPhase.Canceled)
         {
+            // Применяем финальное округление при отпускании
+            _accumulatedAngle = SnapAngle(_accumulatedAngle);
             _isRotating = false;
-            // _inputData.RotateDelta = 0f;
         }
     }
 
@@ -88,9 +89,20 @@ public class Material_InputHandler: MonoBehaviour, IDraggable, IAnyClickHanbler
         float angleDelta = Mathf.DeltaAngle(_previousAngle, currentAngle);
 
         _accumulatedAngle += angleDelta;
-        _inputData.RotateAngle = _accumulatedAngle;
+    
+        // Применяем округление во время вращения
+        float snappedAngle = SnapAngle(_accumulatedAngle);
+    
+        _inputData.RotateAngle = snappedAngle;
         _inputData.RotateDelta = angleDelta / 360f;
         _previousAngle = currentAngle;
+    }
+
+// Метод для округления до ближайшего шага сетки
+    private float SnapAngle(float angle)
+    {
+        var snap = Root.Instance.levelBuildSettings.SnapAngle;
+        return Mathf.Round(angle / snap) * snap;
     }
 
     private void Update()

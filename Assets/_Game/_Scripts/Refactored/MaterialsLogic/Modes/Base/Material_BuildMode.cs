@@ -80,18 +80,21 @@ public class Material_BuildMode: BaseState<Material_Context>
         // Debug.Log("drag move");
         context.Transform.position = Move(context.InputData.Direction);
     }
-    public Vector3 Move(Vector2 worldPos)
+    private Vector3 Move(Vector2 worldPos)
     {
-        var dragPos = new Vector2(worldPos.x, worldPos.y);
+        // Применяем сетку к координатам
+        float snappedX = SnapToGrid(worldPos.x);
+        float snappedY = SnapToGrid(worldPos.y);
     
-        var x = (float)Math.Round(dragPos.x, 1);
-        var y = (float)Math.Round(dragPos.y, 1);
-        
-        var convertPos = new Vector2(x, y);
-        
-        var toMovePos = convertPos;
-        
-        return toMovePos;
+        return new Vector3(snappedX, snappedY, 0f);
+    }
+
+// Метод для привязки к сетке
+    private float SnapToGrid(float value)
+    {
+        var gridSize = Root.Instance.levelBuildSettings.GridMoveSize; 
+        if(gridSize <= 0) return value; // Защита от нулевого шага
+        return Mathf.Round(value / gridSize) * gridSize;
     }
     private void MoveStep(Material_Context context)
     {
@@ -101,11 +104,11 @@ public class Material_BuildMode: BaseState<Material_Context>
     }
     private void UpdateRotation(Material_Context context)
     {
-        context.Transform.rotation = Quaternion.Euler(0, 0, context.InputData.RotateAngle);// + context.Transform.rotation.z
-        
+        // Debug.Log(context.Transform.rotation);
         if (Mathf.Abs(context.InputData.RotateDelta) > 0) // Порог для обработки
         {
-            Debug.Log($"Вращение: угол = {context.InputData.RotateAngle}, дельта = {context.InputData.RotateDelta}");
+            context.Transform.rotation = Quaternion.Euler(0, 0, context.InputData.RotateAngle);
+            // Debug.Log($"Вращение: угол = {context.InputData.RotateAngle}, дельта = {context.InputData.RotateDelta}");
         }
     }
 }
