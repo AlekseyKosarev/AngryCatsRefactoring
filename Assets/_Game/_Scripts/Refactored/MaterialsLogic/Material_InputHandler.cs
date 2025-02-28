@@ -8,7 +8,8 @@ public class Material_InputHandler: MonoBehaviour, IDraggable, IAnyClickHanbler
     
     private Material_Base _material;
     private InputData _inputData;
-    
+
+    private bool _clickedDown;
     public bool InputEnabled { get; set; }
 
     private void Awake()
@@ -16,17 +17,25 @@ public class Material_InputHandler: MonoBehaviour, IDraggable, IAnyClickHanbler
         _material = GetComponent<Material_Base>();
         _inputData = new InputData();
     }
-    public void OnClickDown(Vector2 worldPointerPosition){}
+
+    public void OnClickDown(Vector2 worldPointerPosition)
+    {
+        _clickedDown = true;
+        _inputData.StartDirection = new Vector2(_material.transform.position.x, _material.transform.position.y) - worldPointerPosition;
+                
+        Debug.Log(_inputData.StartDirection);
+    }
 
     public void OnClickUp(Vector2 worldPointerPosition)
     {
         if (!InputEnabled) return;
+        if (!_clickedDown) return;
         
         if(!_isDragged)
             _selected = !_selected;
         _inputData.Selected = _selected;
-
         
+        _clickedDown = true;
     }
 
     public void OnClickPerformed(Vector2 worldPointerPosition)
@@ -34,6 +43,8 @@ public class Material_InputHandler: MonoBehaviour, IDraggable, IAnyClickHanbler
         if (!InputEnabled) return;
 
         _isDragged = true;
+
+        //new Vector3(worldPointerPosition.x, worldPointerPosition.y, 0);
     }
 
     public void OnDrag(Vector2 worldPointerPosition)
@@ -50,6 +61,7 @@ public class Material_InputHandler: MonoBehaviour, IDraggable, IAnyClickHanbler
         if (!InputEnabled) return;
 
         _isDragged = false;
+        _inputData.StartDirection = Vector2.zero;
         _inputData.Direction = Vector3.zero;
         _inputData.MoveType = MoveType.None;
     }
