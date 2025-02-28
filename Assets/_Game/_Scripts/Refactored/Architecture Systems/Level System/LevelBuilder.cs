@@ -21,6 +21,7 @@ public class LevelBuilder : MonoBehaviour
         Root.Instance.BuildableRegistry.Add(itemObject.GetComponent<IBuildable>());
         Root.Instance.PlayableRegistry.Add(itemObject.GetComponent<IPlayable>());
         Root.Instance.PausableRegistry.Add(itemObject.GetComponent<IPausable>());
+        Root.Instance.AnyClickHandlerRegistry.Add(itemObject.GetComponent<IAnyClickHanbler>());
         
         itemObject.GetComponent<Material_Base>().SpawnFromBuilder();
     }

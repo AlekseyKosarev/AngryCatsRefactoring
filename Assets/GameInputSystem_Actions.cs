@@ -35,6 +35,15 @@ public partial class @GameInputSystem_Actions: IInputActionCollection2, IDisposa
                     ""processors"": """",
                     ""interactions"": ""Hold(duration=0.1)"",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RightClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""9e44d9d5-262c-4eb3-99f9-474f3026977d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -57,6 +66,17 @@ public partial class @GameInputSystem_Actions: IInputActionCollection2, IDisposa
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""62b8fb6a-a16b-4320-bc31-66922793ca40"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -711,6 +731,7 @@ public partial class @GameInputSystem_Actions: IInputActionCollection2, IDisposa
         // Build Mode
         m_BuildMode = asset.FindActionMap("Build Mode", throwIfNotFound: true);
         m_BuildMode_Click = m_BuildMode.FindAction("Click", throwIfNotFound: true);
+        m_BuildMode_RightClick = m_BuildMode.FindAction("RightClick", throwIfNotFound: true);
         // Play Mode
         m_PlayMode = asset.FindActionMap("Play Mode", throwIfNotFound: true);
         m_PlayMode_Click = m_PlayMode.FindAction("Click", throwIfNotFound: true);
@@ -802,11 +823,13 @@ public partial class @GameInputSystem_Actions: IInputActionCollection2, IDisposa
     private readonly InputActionMap m_BuildMode;
     private List<IBuildModeActions> m_BuildModeActionsCallbackInterfaces = new List<IBuildModeActions>();
     private readonly InputAction m_BuildMode_Click;
+    private readonly InputAction m_BuildMode_RightClick;
     public struct BuildModeActions
     {
         private @GameInputSystem_Actions m_Wrapper;
         public BuildModeActions(@GameInputSystem_Actions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Click => m_Wrapper.m_BuildMode_Click;
+        public InputAction @RightClick => m_Wrapper.m_BuildMode_RightClick;
         public InputActionMap Get() { return m_Wrapper.m_BuildMode; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -819,6 +842,9 @@ public partial class @GameInputSystem_Actions: IInputActionCollection2, IDisposa
             @Click.started += instance.OnClick;
             @Click.performed += instance.OnClick;
             @Click.canceled += instance.OnClick;
+            @RightClick.started += instance.OnRightClick;
+            @RightClick.performed += instance.OnRightClick;
+            @RightClick.canceled += instance.OnRightClick;
         }
 
         private void UnregisterCallbacks(IBuildModeActions instance)
@@ -826,6 +852,9 @@ public partial class @GameInputSystem_Actions: IInputActionCollection2, IDisposa
             @Click.started -= instance.OnClick;
             @Click.performed -= instance.OnClick;
             @Click.canceled -= instance.OnClick;
+            @RightClick.started -= instance.OnRightClick;
+            @RightClick.performed -= instance.OnRightClick;
+            @RightClick.canceled -= instance.OnRightClick;
         }
 
         public void RemoveCallbacks(IBuildModeActions instance)
@@ -1080,6 +1109,7 @@ public partial class @GameInputSystem_Actions: IInputActionCollection2, IDisposa
     public interface IBuildModeActions
     {
         void OnClick(InputAction.CallbackContext context);
+        void OnRightClick(InputAction.CallbackContext context);
     }
     public interface IPlayModeActions
     {

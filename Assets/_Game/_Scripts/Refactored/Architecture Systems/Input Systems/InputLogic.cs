@@ -38,8 +38,6 @@ public class InputLogic: MonoBehaviour
     public void ClickTo(InputActionPhase clickPhase)
     {
         Vector2 screenPosition = GetMousePosition();
-
-        Root.Instance.anyClickHandlerRegistry.OnAnyClick(screenPosition, clickPhase);
         
         if (TryRayToPoint(screenPosition, out RaycastHit2D hit))
         {
@@ -73,6 +71,13 @@ public class InputLogic: MonoBehaviour
             }
             draggingObjects.Clear();
         }
+    }
+
+    public void AnyClick(InputActionPhase clickPhase)
+    {
+        Vector2 screenPosition = GetMouseWorldPosition();
+
+        Root.Instance.AnyClickHandlerRegistry.OnAnyClick(screenPosition, clickPhase);
     }
     private void Update()
     {

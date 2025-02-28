@@ -33,4 +33,9 @@ public class Input_BuildMode: BaseState<GameInputSystem_Actions>, GameInputSyste
     {
         Root.Instance.inputLogic.ClickTo(context.phase);
     }
+
+    public void OnRightClick(InputAction.CallbackContext context)
+    {
+        Root.Instance.inputLogic.AnyClick(context.phase);
+    }
 }

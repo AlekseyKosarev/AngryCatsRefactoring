@@ -18,7 +18,7 @@ public class Root: Singleton<Root>
     public GameInputSystem_Actions InputActions;
     public InputLogic inputLogic;
     public InputModeToggle inputModeToggle;
-    public AnyClickHandlerRegistry anyClickHandlerRegistry;
+    public AnyClickHandlerRegistry AnyClickHandlerRegistry;
     
     //Registry systems
     public FORTESET_GameObject_Container gameObjectContainer;
@@ -87,7 +87,7 @@ public class Root: Singleton<Root>
         PlayableRegistry = new PlayableRegistry();
         PlayableRegistry.AddRange(gameObjectContainer.GetIPlayableObjects());
         
-        anyClickHandlerRegistry = new AnyClickHandlerRegistry();
-        anyClickHandlerRegistry.AddRange(gameObjectContainer.GetIAnyClickHanblers());
+        AnyClickHandlerRegistry = new AnyClickHandlerRegistry();
+        AnyClickHandlerRegistry.AddRange(gameObjectContainer.GetIAnyClickHanblers());
     }
 }

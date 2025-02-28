@@ -30,10 +30,13 @@ public class Material_BuildMode: BaseState<Material_Context>
     public override void UpdateState(Material_Context context)
     {
         var inputData = context.InputData;
+        
         // if(inputData.MoveType == MoveType.None) return;
         if (inputData.Selected)//нажат объект
         {
+            Debug.Log("Selected");
             Selected(context);
+            UpdateRotation(context);
         }
         else
         {
@@ -95,5 +98,14 @@ public class Material_BuildMode: BaseState<Material_Context>
         Debug.Log("step move");
         var moveVector = context.InputData.Direction;
         context.Transform.position += moveVector.normalized * context.InputData.StepSize;
+    }
+    private void UpdateRotation(Material_Context context)
+    {
+        context.Transform.rotation = Quaternion.Euler(0, 0, context.InputData.RotateAngle);// + context.Transform.rotation.z
+        
+        if (Mathf.Abs(context.InputData.RotateDelta) > 0) // Порог для обработки
+        {
+            Debug.Log($"Вращение: угол = {context.InputData.RotateAngle}, дельта = {context.InputData.RotateDelta}");
+        }
     }
 }
