@@ -42,11 +42,11 @@ public class Material_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
         _isInit = true;
     }
 
-    private void Start()
-    {
-        Init();
-        Debug.Log("Start Tile");
-    }
+    // private void Start()
+    // {
+    //     Init();
+    //     Debug.Log("Start Tile");
+    // }
     public void SpawnFromBuilder()
     {
         Init();
@@ -57,6 +57,7 @@ public class Material_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
 
     private void Update()
     {
+        if (_isInit == false) return;
         _states.Update(materialData);
     }
     

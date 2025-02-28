@@ -11,6 +11,7 @@ public class LevelData
     {
         _objectsOnLevel.Add(objectsOnLevel);
     }
+    public void AddObjectsOnLevel(List<GameObject> objectsOnLevel) => _objectsOnLevel.AddRange(objectsOnLevel);
     public void RemoveObjectOnLevel(GameObject objectsOnLevel) => _objectsOnLevel.Remove(objectsOnLevel);
     public void ClearLevel() => _objectsOnLevel.Clear();
     
@@ -25,14 +26,5 @@ public class LevelData
         }
     }
     public GameObject GetPrefab(MaterialType materialType, ShapeType shapeType) => allItems[(materialType, shapeType)];
-    // public void LoadPrefabs()
-    // {
-    //     // Загружаем все префабы из папки Resources
-    //     GameObject[] prefabs = Resources.LoadAll<GameObject>($"Assets/_Game/Prefabs/Materials/Resources");
-    //
-    //     foreach (var prefab in prefabs)
-    //     {
-    //         Debug.Log("Loaded Prefab: " + prefab.name);
-    //     }
-    // }
+    
 }

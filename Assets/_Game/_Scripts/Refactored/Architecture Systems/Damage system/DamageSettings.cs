@@ -6,4 +6,6 @@ public class DamageSettings: MonoBehaviour
     public float damageModificator = 0.1f;
     [FormerlySerializedAs("fixDamage")] public float minFixDamage = 5f;
     public float lifeTimeDefault = 1f;
+    public float deadDurationDefault = 1f;
+    
 }

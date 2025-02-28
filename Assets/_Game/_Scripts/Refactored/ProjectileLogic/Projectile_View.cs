@@ -1,17 +1,38 @@
-using System;
+using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
-public class Projectile_View: MonoBehaviour
+public class Projectile_View: ViewBase
 {
-    private SpriteRenderer spriteRenderer;
     public Sprite ProjectileSpriteDef;
     public Sprite ProjectileSpriteDead;
+    private Tween deadAnim;
 
-    private void Start()
+    public override void Init()
     {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        base.Init();
+        InitComplete();
     }
 
-    public void SetProjectileSpriteDef() => spriteRenderer.sprite = ProjectileSpriteDef;
-    public void SetProjectileSpriteDead() => spriteRenderer.sprite = ProjectileSpriteDead;
+    public void SetProjectileSpriteDef() => SpriteRenderer.sprite = ProjectileSpriteDef;
+    public void SetProjectileSpriteDead() => SpriteRenderer.sprite = ProjectileSpriteDead;
+
+    public void DeadAnimation()
+    {
+        deadAnim = SpriteRenderer.DOFade(0f, 0.5f * AnimationsSettings.multiplySpeedAnimations);
+    }
+    public void ReviveAnimation()
+    {
+        deadAnim = SpriteRenderer.DOFade(1f, 0.5f * AnimationsSettings.multiplySpeedAnimations);
+    }
+
+    public void ResumeTweenAnimations()
+    {
+        deadAnim.Play();
+    }
+    public void PauseTweenAnimations()
+    {
+        deadAnim.Pause();
+    }
+    
 }

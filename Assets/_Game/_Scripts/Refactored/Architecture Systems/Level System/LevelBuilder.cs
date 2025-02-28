@@ -24,4 +24,13 @@ public class LevelBuilder : MonoBehaviour
         
         itemObject.GetComponent<Material_Base>().SpawnFromBuilder();
     }
+
+    public void LoadLevelOnScene()
+    {
+        var objectsOnLevel = parentEmptyObject.GetComponentsInChildren<Material_Base>();
+        foreach (var item in objectsOnLevel)
+        {
+            item.Init();
+        }
+    }
 }

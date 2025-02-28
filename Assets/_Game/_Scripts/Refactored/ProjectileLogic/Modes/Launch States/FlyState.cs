@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class FlyState: BaseState<Projectile_Context>
 {
-    float lifeTime = 0f;
+    private Timer _timerLifeTime;
 
     // private Action<IDamageable> OnDealDamage; 
     public override void Init(Projectile_Context context)
     {
-        lifeTime = Root.Instance.DamageSettings.lifeTimeDefault;
+        _timerLifeTime = new Timer(Root.Instance.DamageSettings.lifeTimeDefault);
     }
 
     public override void EnterState(Projectile_Context context)
@@ -16,6 +16,7 @@ public class FlyState: BaseState<Projectile_Context>
         // Debug.Log("Fly Projectile");
         context.Physics.OnRigidBody();
         
+        _timerLifeTime.Start(() => Dead(context));
         //sub on deal damage event
 
         // OnDealDamage = damageable => DealDamage(damageable, context);
@@ -34,12 +35,7 @@ public class FlyState: BaseState<Projectile_Context>
     
     private void Flying(Projectile_Context context)
     {
-        lifeTime -= Time.deltaTime;
-        if (lifeTime <= 0)
-        {
-            
-            Dead(context);
-        }
+        _timerLifeTime.Update(Time.deltaTime);
         //check activate abillity
         //скрипт для способности заменяем(может быть пустым)
         //в скрипте есть методы - OnActivateAbility, OnDeactivateAbility, для паузы - OnStopAbility, OnLoadAbility

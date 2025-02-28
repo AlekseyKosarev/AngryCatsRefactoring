@@ -35,6 +35,9 @@ public class Root: Singleton<Root>
     //Level system
     public LevelData LevelData;
     public LevelBuilder levelBuilder;
+    
+    //VIEW Settings
+    public AnimationsSettings animationsSettings;
     //ACTIVE STATES
     
     //GLOBAL
@@ -74,6 +77,7 @@ public class Root: Singleton<Root>
         LevelData = new LevelData();
         LevelData.Init();
         levelBuilder.levelData = LevelData;
+        levelBuilder.LoadLevelOnScene();
         
         //Init Registry
         PausableRegistry = new PausableRegistry();

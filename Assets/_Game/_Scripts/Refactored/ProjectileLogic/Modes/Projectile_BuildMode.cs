@@ -7,6 +7,7 @@ public class Projectile_BuildMode: BaseState<Projectile_Context>
     {
         context.Physics.OffRigidbodyNoSave();
         context.View.SetProjectileSpriteDef();
+        context.View.ReviveAnimation();
     }
     public override void ExitState(Projectile_Context context)
     {

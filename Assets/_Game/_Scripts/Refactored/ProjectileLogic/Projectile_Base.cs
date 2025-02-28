@@ -25,6 +25,8 @@ public class Projectile_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
         inputHandler = GetComponent<Projectile_InputHandler>();
         launchHandler = GetComponent<Projectile_Launch>();
         
+        view.Init();
+        
         _context = new Projectile_Context(rb, transform, view, inputHandler, physics, launchHandler);
     }
 
@@ -48,6 +50,7 @@ public class Projectile_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
 
     void RestartPlaying()
     {
+        _context.Physics.LoadTransform();
         // Debug.Log("RestartPlaying Projectile");
         var playMode = _states.GetStateFromRegistry<Projectile_PlayMode>() as BaseState<Projectile_Context>;
         playMode?.ResetState();
@@ -56,6 +59,7 @@ public class Projectile_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
     public void PauseMode_Enable()
     {
         launchHandler.PauseTween();
+        view.PauseTweenAnimations();
         _states.SaveCurrentStatesToPrevious();
         _states.SwitchToState<Projectile_PauseMode>(_context);
     }
@@ -63,6 +67,7 @@ public class Projectile_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
     public void PauseMode_Disable()
     {
         launchHandler.ResumeTween();
+        view.ResumeTweenAnimations();
         _states.ActivatePreviousStates(_context);
         _states.SetStateActive<Projectile_PauseMode>(false, _context);
     }
