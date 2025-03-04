@@ -21,7 +21,7 @@ public class Material_BuildMode: BaseState<Material_Context>
     public override void ExitState(Material_Context context)
     {
         Root.Instance.Material_BuildMode = false;
-        
+        context.InputHandler.SetSelect(false);
         context.InputHandler.InputEnabled = false;
         
         context.Physics.SaveTransform();
@@ -34,7 +34,6 @@ public class Material_BuildMode: BaseState<Material_Context>
         // if(inputData.MoveType == MoveType.None) return;
         if (inputData.Selected)//нажат объект
         {
-            Debug.Log("Selected");
             Selected(context);
             UpdateRotation(context);
         }

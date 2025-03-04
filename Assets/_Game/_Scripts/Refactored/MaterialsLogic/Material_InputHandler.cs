@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Material_InputHandler: MonoBehaviour, IDraggable, IAnyClickHanbler
+public class Material_InputHandler: MonoBehaviour, IDraggable, IAnyClickHanbler, ISelectable
 {
     private bool _selected = false;
     private bool _isDragged = false;
@@ -23,7 +23,6 @@ public class Material_InputHandler: MonoBehaviour, IDraggable, IAnyClickHanbler
         _clickedDown = true;
         _inputData.StartDirection = new Vector2(_material.transform.position.x, _material.transform.position.y) - worldPointerPosition;
                 
-        Debug.Log(_inputData.StartDirection);
     }
 
     public void OnClickUp(Vector2 worldPointerPosition)
@@ -32,8 +31,7 @@ public class Material_InputHandler: MonoBehaviour, IDraggable, IAnyClickHanbler
         if (!_clickedDown) return;
         
         if(!_isDragged)
-            _selected = !_selected;
-        _inputData.Selected = _selected;
+            SetSelect(!_selected);
         
         _clickedDown = true;
     }
@@ -124,5 +122,32 @@ public class Material_InputHandler: MonoBehaviour, IDraggable, IAnyClickHanbler
             OnRotate(Root.Instance.inputLogic.GetMouseWorldPosition());
         }
         _material.SetInputData(_inputData);
+    }
+
+    public void Select()
+    {
+        _selected = true;
+        _inputData.Selected = _selected;
+    }
+
+    public void Deselect()
+    {
+        _selected = false;
+        _inputData.Selected = _selected;
+    }
+
+    public void SetSelect(bool value)
+    {
+        if (value == _selected) return;
+        if (_selected)
+        {
+            Root.Instance.itemSelecter.ClearSelectedItems();
+            Deselect();
+        }
+        else
+        {
+            Root.Instance.itemSelecter.SelectOneItem(gameObject.GetComponent<ISelectable>());
+            Select();
+        }
     }
 }

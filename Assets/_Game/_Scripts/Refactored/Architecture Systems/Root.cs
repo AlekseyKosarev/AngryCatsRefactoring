@@ -36,6 +36,7 @@ public class Root: Singleton<Root>
     public LevelData LevelData;
     public LevelBuilder levelBuilder;
     public LevelBuildSettings levelBuildSettings;
+    public ItemSelecter itemSelecter;
     //VIEW Settings
     public AnimationsSettings animationsSettings;
     //ACTIVE STATES
