@@ -22,27 +22,22 @@ public class Material_InputHandler: MonoBehaviour, IDraggable, IAnyClickHanbler,
     {
         _clickedDown = true;
         _inputData.StartDirection = new Vector2(_material.transform.position.x, _material.transform.position.y) - worldPointerPosition;
-                
     }
 
     public void OnClickUp(Vector2 worldPointerPosition)
     {
         if (!InputEnabled) return;
         if (!_clickedDown) return;
-        
         if(!_isDragged)
             SetSelect(!_selected);
         
-        _clickedDown = true;
+        _clickedDown = false;
     }
 
     public void OnClickPerformed(Vector2 worldPointerPosition)
     {
         if (!InputEnabled) return;
-
         _isDragged = true;
-
-        //new Vector3(worldPointerPosition.x, worldPointerPosition.y, 0);
     }
 
     public void OnDrag(Vector2 worldPointerPosition)

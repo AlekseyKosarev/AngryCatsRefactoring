@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class InputLogic: MonoBehaviour
 {
+    public LayerMask stopRaycastLayers;
     private Camera mainCamera;
     private InputAction pointerPosition;
 
@@ -18,12 +19,35 @@ public class InputLogic: MonoBehaviour
     {
         Init();
     }
+    // private bool TryRayToPoint(Vector2 screenPosition, out RaycastHit2D hit)
+    // {
+    //     Ray ray = mainCamera.ScreenPointToRay(screenPosition);
+    //     hit = Physics2D.Raycast(ray.origin, ray.direction);
+    //     
+    //     return hit.collider != null; 
+    // }
+    
     private bool TryRayToPoint(Vector2 screenPosition, out RaycastHit2D hit)
     {
         Ray ray = mainCamera.ScreenPointToRay(screenPosition);
-        hit = Physics2D.Raycast(ray.origin, ray.direction);
         
-        return hit.collider != null; 
+        hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, stopRaycastLayers);
+        
+        if (hit.collider != null)
+        {
+            return true;
+        }
+
+        RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction);
+        
+        if (hits.Length > 0)
+        {
+            hit = hits[0];
+            return true;
+        }
+
+        hit = default;
+        return false;
     }
     private Vector2 GetMousePosition()
     {
