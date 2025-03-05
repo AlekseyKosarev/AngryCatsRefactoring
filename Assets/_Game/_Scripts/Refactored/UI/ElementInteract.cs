@@ -85,8 +85,13 @@ public class ElementInteract : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public void Spawn()
     {
+        // if (Root.Instance.zoneController.ContainsRectTransform(ZoneType.Forbidden, GetComponent<RectTransform>())) return;
         // Получаем мировые координаты мыши и создаем объект
         var position = Root.Instance.inputLogic.GetMouseWorldPosition();
+        var check = Root.Instance.zoneController.ContainsPoint(ZoneType.BuildZone, position);
+        if(!check) return;
+        Debug.Log("Spawn");
+        
         Root.Instance.levelBuilder.SpawnObjectToLevel(prefab, position);
     }
 }

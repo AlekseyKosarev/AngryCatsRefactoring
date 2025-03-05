@@ -37,6 +37,7 @@ public class Root: Singleton<Root>
     public LevelBuilder levelBuilder;
     public LevelBuildSettings levelBuildSettings;
     public ItemSelecter itemSelecter;
+    public ZoneController zoneController;
     //VIEW Settings
     public AnimationsSettings animationsSettings;
     //ACTIVE STATES
@@ -79,6 +80,8 @@ public class Root: Singleton<Root>
         LevelData.Init();
         levelBuilder.levelData = LevelData;
         levelBuilder.LoadLevelOnScene();
+        
+        zoneController = new ZoneController(gameObjectContainer.GetAllZones());
         
         //Init Registry
         PausableRegistry = new PausableRegistry();

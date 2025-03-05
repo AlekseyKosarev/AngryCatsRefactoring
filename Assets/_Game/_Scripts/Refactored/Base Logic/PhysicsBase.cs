@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class PhysicsBase: MonoBehaviour
@@ -31,6 +32,11 @@ public abstract class PhysicsBase: MonoBehaviour
     public void ColliderSetActive(bool value)
     {
         Collider.enabled = value;
+    }
+
+    public void ColliderSetTrigger(bool value)
+    {
+        Collider.isTrigger = value;
     }
 
     public void SetDefaultPhysics()
@@ -91,5 +97,51 @@ public abstract class PhysicsBase: MonoBehaviour
     public void SetRotation(float angle)
     {
         transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
+    
+    
+    // public List<Collider2D> GetNearbyColliders()
+    // {
+    //     List<Collider2D> nearbyColliders = new List<Collider2D>();
+    //
+    //     ContactFilter2D filter = new ContactFilter2D(); // Можно настроить фильтр, если нужно
+    //     filter.NoFilter(); // Отключаем фильтр, чтобы получить все коллайдеры
+    //
+    //     int colliderCount = Collider.Overlap(filter, nearbyColliders);
+    //
+    //     return nearbyColliders;
+    // }
+    public float GetImmersionDepth(Collider2D otherCollider)
+    {
+        ColliderDistance2D distance = Collider.Distance(otherCollider);
+
+        if (distance.isOverlapped)
+        {
+            return Mathf.Abs(distance.distance);
+        }
+
+        return 0f;
+    }
+    public bool CheckContactsWithDepth(float requiredDepth)
+    {
+        List<Collider2D> contacts = new List<Collider2D>();
+        int contactCount = Collider.GetContacts(contacts);
+
+        if (contactCount == 0)
+        {
+            return false;
+        }
+
+        foreach (Collider2D contactCollider in contacts)
+        {
+            float immersionDepth = GetImmersionDepth(contactCollider);
+
+            if (immersionDepth >= requiredDepth)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

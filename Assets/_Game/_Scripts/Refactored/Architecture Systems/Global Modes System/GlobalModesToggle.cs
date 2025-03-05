@@ -24,6 +24,8 @@ public class GlobalModesToggle
     
     public void ActivatePlayMode()
     {
+        Debug.Log(Root.Instance.levelBuilder.CheckConflicts());
+        if (Root.Instance.levelBuilder.CheckConflicts()) return;
         _statesGame.SwitchToState<Global_PlayMode>(new EmptyContext());
     }
     

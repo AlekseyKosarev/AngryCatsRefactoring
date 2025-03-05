@@ -56,6 +56,7 @@ public class InputLogic: MonoBehaviour
 
     public Vector2 GetMouseWorldPosition()
     {
+        // Debug.Log(Root.Instance.zoneController.ContainsPoint(ZoneType.Forbidden, mainCamera.ScreenToWorldPoint(GetMousePosition())));
         return mainCamera.ScreenToWorldPoint(GetMousePosition());
     }
 

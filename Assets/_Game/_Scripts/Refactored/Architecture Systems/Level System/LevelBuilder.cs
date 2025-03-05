@@ -34,4 +34,17 @@ public class LevelBuilder : MonoBehaviour
             item.Init();
         }
     }
+
+    public bool CheckConflicts()
+    {
+        var materials = levelData.GetMaterialOnLevel();
+        foreach (var material in materials)
+        {
+            if (material.CheckConflict())
+                return true;
+        }
+
+        return false;
+    }
+    
 }

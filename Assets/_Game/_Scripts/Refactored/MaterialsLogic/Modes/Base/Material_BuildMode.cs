@@ -16,6 +16,10 @@ public class Material_BuildMode: BaseState<Material_Context>
         // context.Rb.bodyType = RigidbodyType2D.Kinematic;
         context.Physics.OffRigidbodyNoSave();
         context.InputHandler.InputEnabled = true;
+        
+        context.Physics.ColliderSetTrigger(true);
+        // context.Physics.ColliderMiniScale();
+
     }
 
     public override void ExitState(Material_Context context)
@@ -25,6 +29,9 @@ public class Material_BuildMode: BaseState<Material_Context>
         context.InputHandler.InputEnabled = false;
         
         context.Physics.SaveTransform();
+        
+        context.Physics.ColliderSetTrigger(false);
+        // context.Physics.ColliderNormalScale();
     }
 
     public override void UpdateState(Material_Context context)
@@ -46,6 +53,15 @@ public class Material_BuildMode: BaseState<Material_Context>
         //     Debug.Log("selected");
         // }
         UpdateMovement(context);
+        
+        if (context.MaterialBase.CheckConflict())
+        {
+            context.View.SetColor(Color.red);
+        }
+        else
+        {
+            context.View.SetDefaultColor();
+        }
     }
 
     

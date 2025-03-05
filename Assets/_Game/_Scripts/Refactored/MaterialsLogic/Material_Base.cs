@@ -29,7 +29,8 @@ public class Material_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
         inputHandler = GetComponent<Material_InputHandler>();
         damageHandler = GetComponent<Material_DamageHandler>();
         
-        materialData = new Material_Context(rb, transform, view, inputHandler, physics, damageHandler);
+        materialData = new Material_Context(this, rb, transform, view, inputHandler, physics, damageHandler);
+        
         Root.Instance.LevelData.AddObjectOnLevel(gameObject);
         
         _states = new StateMachineBuilder<Material_Context>()
@@ -106,5 +107,14 @@ public class Material_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
     {
         // _states.DeactivateAllStates(materialData);
         _states.SetStateActive<Material_PlayMode>(false, materialData);//TODO лучше deactivate all states прокинуть и использовать
+    }
+    
+    public bool CheckConflict()//TODO это часто вызывается, но пока не важно
+    {
+        var check = Root.Instance.zoneController.ContainsCollider(ZoneType.BuildZone, physics.GetComponent<Collider2D>());
+        var contacts = physics.CheckContactsWithDepth(0.15f);
+        
+        // Debug.Log(check);
+        return  !check || contacts;
     }
 }

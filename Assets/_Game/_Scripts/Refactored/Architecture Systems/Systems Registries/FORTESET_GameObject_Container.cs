@@ -46,4 +46,12 @@ public class FORTESET_GameObject_Container: MonoBehaviour
             .ConvertAll(x => x.GetComponent<IAnyClickHanbler>())
             .FindAll(x => x != null); // Убираем null значения
     }
+    
+    public List<Zone> GetAllZones()
+    {
+        Init();
+        return gameObjects
+            .ConvertAll(x => x.GetComponent<Zone>())
+            .FindAll(x => x != null); // Убираем null значения
+    }
 }   
