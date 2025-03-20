@@ -4,11 +4,13 @@ public class LevelBuilder : MonoBehaviour
 {
     public Transform parentEmptyObject;
 
-    [HideInInspector] public LevelData levelData;
+    [HideInInspector] public LevelDataRegistry levelData;
+    
+    
 
-    public void SpawnObjectToLevel(MaterialType materialType, ShapeType shapeType, Vector3 position)
+    public void SpawnObjectToLevel(int id, Vector3 position)
     {
-        var prefabItem = levelData.GetPrefab(materialType, shapeType);
+        var prefabItem = levelData.GetPrefab(id);
         SpawnObjectToLevel(prefabItem, position);
     }
 
@@ -43,7 +45,8 @@ public class LevelBuilder : MonoBehaviour
             if (material.CheckConflict())
                 return true;
         }
-
+        //test save level
+        levelData.levelSaver.SaveLevel(1, "test", 5);
         return false;
     }
     

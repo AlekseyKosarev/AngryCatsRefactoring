@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ElementInteract : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
-    public GameObject prefab; // Префаб объекта, который будет создан на сцене
+    public int id;
     private ScrollRect scrollRect;
     private bool isDragging = false;
     private GameObject dragCopy; // Копия элемента для перетаскивания
@@ -92,6 +92,6 @@ public class ElementInteract : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         if(!check) return;
         Debug.Log("Spawn");
         
-        Root.Instance.levelBuilder.SpawnObjectToLevel(prefab, position);
+        Root.Instance.levelBuilder.SpawnObjectToLevel(id, position);
     }
 }

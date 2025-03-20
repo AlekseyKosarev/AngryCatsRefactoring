@@ -134,6 +134,8 @@ public abstract class PhysicsBase: MonoBehaviour
 
         foreach (Collider2D contactCollider in contacts)
         {
+            if (contactCollider.gameObject.layer == LayerMask.NameToLayer("UI"))//TODO возможно переделать.......
+                continue;
             float immersionDepth = GetImmersionDepth(contactCollider);
 
             if (immersionDepth >= requiredDepth)

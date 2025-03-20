@@ -1,5 +1,9 @@
 using System.Collections.Generic;
 using _Game._Scripts.Copy;
+using DS.Configs;
+using DS.Core.Storage;
+using DS.Core.Storage.Cache;
+using DS.Services;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -10,6 +14,9 @@ public class Root: Singleton<Root>
     
     //MainCamera
     [HideInInspector] public Camera mainCamera;
+    
+    //Data System
+    public DataService DataService;
     
     //Global Modes
     public GlobalModesToggle globalModesToggle;
@@ -33,7 +40,7 @@ public class Root: Singleton<Root>
     public DamageSettings DamageSettings;
     
     //Level system
-    public LevelData LevelData;
+    public LevelDataRegistry LevelData;
     public LevelBuilder levelBuilder;
     public LevelBuildSettings levelBuildSettings;
     public ItemSelecter itemSelecter;
@@ -66,8 +73,12 @@ public class Root: Singleton<Root>
         Init();
     }
 
+    
+
     private void Init()
     {
+        DataService = new DataServiceInit().InitDataService();
+        
         mainCamera = Camera.main;
         InputActions = new GameInputSystem_Actions();
         inputModeToggle.Init();
@@ -76,7 +87,7 @@ public class Root: Singleton<Root>
         globalModesToggle.ActivateMenuMode();//TODO refactor later maybe
         
         //Init Level System
-        LevelData = new LevelData();
+        LevelData = new LevelDataRegistry();
         LevelData.Init();
         levelBuilder.levelData = LevelData;
         levelBuilder.LoadLevelOnScene();

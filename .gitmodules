@@ -1,3 +1,6 @@
 [submodule "Assets/_Submodules/StateMachine"]
 	path = Assets/_Submodules/StateMachine
 	url = https://github.com/AlekseyKosarev/StateMachine.git
+[submodule "Assets/_Submodules/DS"]
+	path = Assets/_Submodules/DS
+	url = https://github.com/AlekseyKosarev/DS.git

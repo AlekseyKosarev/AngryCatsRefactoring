@@ -1,3 +1,4 @@
+using System;
 using StateMachine.StateMachineSystems;
 using UnityEngine;
 
@@ -8,6 +9,9 @@ using UnityEngine;
 [RequireComponent(typeof(Material_DamageHandler))]
 public class Material_Base: MonoBehaviour, IPausable, IBuildable, IPlayable
 {
+    
+    [SerializeField] public ItemData itemData;
+    //state machine 
     private StateMachine<Material_Context> _states;
     private Material_Context materialData;
     

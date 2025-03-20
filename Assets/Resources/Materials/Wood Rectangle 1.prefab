@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 340483651476575873}
   - component: {fileID: 169681276654068548}
   m_Layer: 7
-  m_Name: Wood Rectangle
+  m_Name: Wood Rectangle 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,8 +34,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 4.28, y: 0.51, z: 0.065283164}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
@@ -198,6 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c99ec23ca54ed99a3e98a317266a95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemData:
+    Id: 2
 --- !u!114 &6448082754966803268
 MonoBehaviour:
   m_ObjectHideFlags: 0
